@@ -1,0 +1,18 @@
+.navbar{
+    background-color: #efe9e9;
+    position: sticky;
+    width: 100vw;
+    margin-top: -1px;
+    
+  }
+  .navbar-brand,.nav-link{
+    color: #222222;
+    
+  }
+  .collapse{
+    padding-right:30px ;
+  }
+  
+  .pageName{
+    padding-left: 50px;
+  }

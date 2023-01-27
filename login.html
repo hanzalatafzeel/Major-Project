@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,10 +73,19 @@
 
                         <img src="userprofile.png" alt="">
                     </div>
+                    <select name="type" id="type" onchange="who('type')"  >
+                        <option value="null">I am a </option>
+                        <option value="student">Bonafide Student</option>
+                        <option value="canteen">Canteen</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <input type="text" id="student" name="student" class="hide" placeholder="Student Id ">
+                    <input type="text" id="canteen" name="canteen" class="hide" placeholder="Canteen Id ">
+                    <input type="text" id="admin" name="admin" class="hide" placeholder="Admin Id ">
                     <input type="email" name="email" required placeholder="Enter your email">
                     <input type="password" name="password" required placeholder="Enter your password">
 
-                    <input type="submit" name="submit" value="Login now" class="form-btn">
+                    <input type="submit" name="submit" value="login" class="form-btn">
                     <p>don't have an account? <a id="flip-card-btn-turn-to-back" href="#">Register</a></p>
                     
                 </form>
@@ -85,25 +96,27 @@
             <!-- signup flip  -->
             <div class="flip-card-back">
                 
-                <form action="http://localhost:8000/createAccount" method="POST" id="register">
+                <form action="register.php" method="POST" id="register">
                     <div class="image">
                         <img src="userprofile.png" alt="" >
                     </div>
                     <div class="formError"></div>
-                    <select name="type" id="type">
+                    <select name="type" id="type" onchange="who('type')"  >
                         <option value="null">I am a </option>
                         <option value="student">Bonafide Student</option>
                         <option value="canteen">Canteen</option>
                         <option value="admin">Admin</option>
                     </select>
+                    <input type="text" id="student" name="student" class="hide" placeholder="Student Id ">
+                    <input type="text" id="canteen" name="canteen" class="hide" placeholder="Canteen Id ">
+                    <input type="text" id="admin" name="admin" class="hide" placeholder="Admin Id ">
                     <input type="text" id="name" name="name" placeholder="Name">
-                    <input type="text" id="id" name="id" placeholder="Student Id/ Faculty Id ">
                     <input type="email" id="email" name="email"  placeholder="Email">
                     <input type="number" id="phone" name="phone"  placeholder="Contact Number">
                     <input type="password" name="password" id="password"  placeholder="Enter your password">
                     <input type="password" placeholder="confirm password">
 
-                    <input type="submit" name="submit" value="Register" class="form-btn">
+                    <input type="submit" name="submit" value="register" class="form-btn">
                     <p>Already have an account? <a id="flip-card-btn-turn-to-front"href="#">Login</a></p>
                 
                 </form>

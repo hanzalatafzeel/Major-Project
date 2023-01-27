@@ -55,3 +55,30 @@ document.addEventListener('DOMContentLoaded', function(event) {
         })
 
 });
+
+function who(id){
+  let info = document.getElementById(id)
+  let val = info.value;
+  let length = info.options.length;
+  for(let i=0; i<length;i++){
+    var elem = info.options.item(i).value;
+    var hid = document.getElementById(elem);
+    if(elem !== "null"){
+      console.log(elem);
+      if(hid.className === "show"){
+        hid.classList.remove("show");
+        hid.classList.add("hide");
+      }
+    }
+   }
+  let sel = document.getElementById(val);
+  if(val !== "null"){
+    if(sel.className === "hide"){
+      sel.classList.remove("hide");
+      sel.classList.add("show");
+    }
+    else{
+      sel.classList.add("show");
+    }
+  }
+}

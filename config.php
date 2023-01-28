@@ -2,7 +2,7 @@
 $dbHost = "localhost";
 $dbUsername = "root";
 $dbPassword = "";
-$dbName = "chats";
+$dbName = "canteen";
 
 $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 

@@ -64,7 +64,7 @@ function who(id){
     var elem = info.options.item(i).value;
     var hid = document.getElementById(elem);
     if(elem !== "null"){
-      console.log(elem);
+      // console.log(elem);
       if(hid.className === "show"){
         hid.classList.remove("show");
         hid.classList.add("hide");

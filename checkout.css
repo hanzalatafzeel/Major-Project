@@ -6,28 +6,53 @@
     background-color: #fff;
     border-radius: 9px;
     box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
-    height: 300px;
+
     margin: 5% auto 5% auto;
-    padding: 2% 10% 0 5%;
+    padding: 2% 10% 2% 5%;
     width: 70%;
 }
 
 .item{
     margin-top: 1%;
-    margin-left: 0 auto 0 auto;
+    margin-left: 0 auto 1% auto;
 
 }
-.item span{
-    justify-content: space-around;
-    margin-left: 11%;
-}
-/* .check td{
+.itemQuan{
+    margin-left: 40%;
+    /* border: 1px solid black; */
     
-    width: 50%;
 }
-.check tr{
-    margin-top: 200px;
+.itemPrice{
+    margin-left: 30%;
+}
+.item input{
+    width: 5%;
+    margin: 0 1% 0 1%;
+    text-align: center;
+}
+.item input::-webkit-outer-spin-button,
+.item input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+/* input[type=number] {
+  -moz-appearance: textfield;
 } */
+
+.checkout{
+    margin-top: 3%;
+}
+
+.checkout-btn{
+    background-color: #1aae9f;
+    border-radius: 6px;
+    border: none;
+    padding: 5px;
+    color: #fff;
+}
+
 
 
 

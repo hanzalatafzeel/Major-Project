@@ -1,12 +1,16 @@
 .navbar{
-    background-color: #efe9e9;
+    background-color: #f43127;
     position: sticky;
     width: 100vw;
     margin-top: -1px;
     
   }
+  .yellow{
+    color: gold;
+  }
   .navbar-brand,.nav-link{
-    color: #222222;
+    color: #fff;
+    font-weight: 500;
     
   }
   .collapse{

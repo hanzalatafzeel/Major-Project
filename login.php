@@ -1,7 +1,7 @@
 
 <?php
 
-require_once 'form.php';
+session_start();
 $front = "flip-card-front";
 $back = "flip-card-back";
 if($_SESSION['regerr']){

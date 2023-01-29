@@ -4,6 +4,6 @@
 
 $_SESSION['logged'] = false;
 
-header('location:index.php');
+header('location:login.php');
 
 ?>

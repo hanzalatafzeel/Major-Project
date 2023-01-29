@@ -1,6 +1,6 @@
 <?php 
-// require_once 'form.php';
-session_start();
+require_once 'form.php';
+// session_start();
 ?>
 
 <!DOCTYPE html>

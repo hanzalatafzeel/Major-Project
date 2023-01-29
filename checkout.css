@@ -1,0 +1,11 @@
+/* .check{
+    width: 100%;
+    display: flex;
+}
+.check-container{
+    width: 70%;
+    margin: 10% auto 10% auto;
+    display: flex;
+} */
+
+@import "compass/css3";

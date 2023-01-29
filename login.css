@@ -98,7 +98,7 @@ html, body
   -ms-perspective: 56.25rem;
   perspective: 56.25rem; */
   margin: 0 auto;
-  margin-bottom: 10%;
+  margin-bottom: 20%;
 }
 .flip-card-3D-wrapper .flip-card-back,.flip-card-front{
     width: 100%;

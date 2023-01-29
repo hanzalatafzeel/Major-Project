@@ -1,5 +1,15 @@
 
+<?php
+session_start();
+$front = "flip-card-front";
+$back = "flip-card-back";
+if($_SESSION['regerr']){
+    $temp = $front;
+    $front = $back;
+    $back = $temp;
+}
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,40 +76,34 @@
     <!-- login flip  -->
     <div class="flip-card-3D-wrapper log-box">
         <div id="flip-card">
-            <div class="flip-card-front">
+            <div class="<?php echo $front;?>">
 
-                <form action="login.php" method="post" id="login">
-                    <div class="image">
+                <form action="form.php" method="post" enctype="multipart/form-data">
+                    <!-- <div class="image">
 
                         <img src="userprofile.png" alt="">
-                    </div>
-                    <select name="type" id="type" onchange="who('type')"  >
+                    </div> -->
+                    <select name="who" id="who" >
                         <option value="null">I am a </option>
                         <option value="student">Bonafide Student</option>
                         <option value="canteen">Canteen</option>
                         <option value="admin">Admin</option>
                     </select>
-                    <input type="text" id="student" name="student" class="hide" placeholder="Student Id ">
-                    <input type="text" id="canteen" name="canteen" class="hide" placeholder="Canteen Id ">
-                    <input type="text" id="admin" name="admin" class="hide" placeholder="Admin Id ">
                     <input type="email" name="email" required placeholder="Enter your email">
                     <input type="password" name="password" required placeholder="Enter your password">
 
-                    <input type="submit" name="submit" value="login" class="form-btn">
-                    <p>don't have an account? <a id="flip-card-btn-turn-to-back" href="#">Register</a></p>
+                    <input type="submit" id="submit" name="submit" value="login" class="form-btn">
+                    <p>don't have an account? <a id="flip-card-btn-turn-to-back" class="flip">Register</a></p>
                     
                 </form>
             </div>
-
-
-
             <!-- signup flip  -->
-            <div class="flip-card-back">
+            <div class="<?php echo $back;?>">
                 
-                <form action="register.php" method="POST" id="register">
-                    <div class="image">
+                <form action="form.php" method="POST"  enctype="multipart/form-data">
+                    <!-- <div class="image">
                         <img src="userprofile.png" alt="" >
-                    </div>
+                    </div> -->
                     <div class="formError"></div>
                     <select name="type" id="type" onchange="who('type')"  >
                         <option value="null">I am a </option>
@@ -116,8 +120,8 @@
                     <input type="password" name="password" id="password"  placeholder="Enter your password">
                     <input type="password" placeholder="confirm password">
 
-                    <input type="submit" name="submit" value="register" class="form-btn">
-                    <p>Already have an account? <a id="flip-card-btn-turn-to-front"href="#">Login</a></p>
+                    <input type="submit" id="submit" name="submit" value="register" class="form-btn">
+                    <p>Already have an account? <a id="flip-card-btn-turn-to-front" class="flip">Login</a></p>
                 
                 </form>
             </div>

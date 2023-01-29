@@ -1,7 +1,8 @@
 <?php
 require_once 'config.php';
 
-session_start();
+require_once 'session.php';
+
 
 if(isset($_POST['submit'])){
     if($_POST['submit'] == 'register' && $_POST['type'] != 'null'){
@@ -19,16 +20,18 @@ if(isset($_POST['submit'])){
         header("location:login.php");
        }
         if($insert){
-            if($_POST['type'] == 'admin'){
-                header("location:admin.html");
-            }
-            else if($_POST['type'] == 'canteen'){
-                echo $id;
-                // header("location:canteen.html");
-            }
-            else{
-                header("location:index.html");
-            }
+            $_SESSION['regerr'] = false;
+            // if($_POST['type'] == 'admin'){
+            //     header("location:admin.html");
+            // }
+            // else if($_POST['type'] == 'canteen'){
+            //     echo $id;
+            //     header("location:canteen.html");
+            // }
+            // else{
+            //     header("location:index.php");
+            // }
+            header("location:login.php");
         }
     }
     else if($_POST['submit'] == 'login'){
@@ -37,6 +40,7 @@ if(isset($_POST['submit'])){
         $email = $_POST['email'];
         $pass = md5($_POST['password']);
         $sql = "SELECT `id`,`name`,`contact` FROM `$who` WHERE email = '$email' && password = '$pass'";
+
         try {
             $result = $db->query($sql);
         } catch (Throwable $th) {
@@ -66,6 +70,8 @@ if(isset($_POST['submit'])){
 
     }
     else{
+        $_SESSION['regerr'] = false;
+        $_SESSION['logged'] = false;
         header("location:login.html"); 
     }    
 

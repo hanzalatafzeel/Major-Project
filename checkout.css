@@ -8,7 +8,26 @@
     box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
     height: 300px;
     margin: 5% auto 5% auto;
+    padding: 2% 10% 0 5%;
     width: 70%;
 }
+
+.item{
+    margin-top: 1%;
+    margin-left: 0 auto 0 auto;
+
+}
+.item span{
+    justify-content: space-around;
+    margin-left: 11%;
+}
+/* .check td{
+    
+    width: 50%;
+}
+.check tr{
+    margin-top: 200px;
+} */
+
 
 

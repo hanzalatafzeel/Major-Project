@@ -1,5 +1,4 @@
 <?php 
-
 session_start();
 ?>
 
@@ -54,11 +53,8 @@ session_start();
                     <!-- about button -->
                     <?php if($_SESSION['logged']){?>
                     <li class="nav-item">
-<<<<<<< HEAD:index.html
-                        <a class="nav-link" id="signup" href="login.html" value="signup">sign Up</a>
-=======
+                        <!-- <a class="nav-link" id="signup" href="login.html" value="signup">sign Up</a> -->
                         <a class="nav-link" id="LogOut" href="logout.php" value="LogOut">LogOut</a>
->>>>>>> 872e9737302733333f8ab0088d637f20eecb8b9b:index.php
                     </li>
                     <?php }else{?>
                         <li class="nav-item">

@@ -1,5 +1,9 @@
 <?php 
+@include 'config.php';
+
 session_start();
+$sql = "SELECT `name`,`price`, `image`  FROM `item` ";
+$result = $db->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -51,14 +55,14 @@ session_start();
                         <a class="nav-link" href="#footer">Contact</a>
                     </li>
                     <!-- about button -->
-                    <?php if($_SESSION['logged']){?>
+                    <?php if(isset($_SESSION['logged'])){?>
                     <li class="nav-item">
                         <!-- <a class="nav-link" id="signup" href="login.html" value="signup">sign Up</a> -->
-                        <a class="nav-link" id="LogOut" href="logout.php" value="LogOut">LogOut</a>
+                        <a class="nav-link"  href="logout.php" value="LogOut">LogOut</a>
                     </li>
                     <?php }else{?>
                         <li class="nav-item">
-                        <a class="nav-link" id="LogIn" href="login.php" value="Login">Login</a>
+                        <a class="nav-link" href="login.php" value="Login">Login</a>
                     </li>
                     <?php }?>
                     <!-- login button -->
@@ -68,89 +72,26 @@ session_start();
                 </ul>
             </div>
         </nav>
-
+        <?php if($result->num_rows>0){?>
         <div class="box-container">
+        <?php while($row = $result->fetch_assoc()){ ?>
             <div class="box">
-                <img src="delhi.jpeg" alt="">
+                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image']); ?>" alt="">
                 <table>
                     <tr>
-                        <td>Item Name</td>
+                        <td><?php echo $row['name']?></td>
                         <td><button class="box-btn">Buy Now</button></td>
                     </tr>
                     <tr>
-                        <td>Item Price</td>
+                        <td> &#8377; <?php echo $row['price']?></td>
                         <td><button class="box-btn">Add to Cart</button></td>
                     </tr>
                 </table>
             </div>
-            <div class="box">
-                <img src="delhi.jpeg" alt="">
-                <table>
-                    <tr>
-                        <td>Item Name</td>
-                        <td><button class="box-btn">Buy Now</button></td>
-                    </tr>
-                    <tr>
-                        <td>Item Price</td>
-                        <td><button class="box-btn">Add to Cart</button></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="box">
-                <img src="delhi.jpeg" alt="">
-                <table>
-                    <tr>
-                        <td>Item Name</td>
-                        <td><button class="box-btn">Buy Now</button></td>
-                    </tr>
-                    <tr>
-                        <td>Item Price</td>
-                        <td><button class="box-btn">Add to Cart</button></td>
-                    </tr>
-                </table>
-            </div>
-
-            <div class="box">
-                <img src="delhi.jpeg" alt="">
-                <table>
-                    <tr>
-                        <td>Item Name</td>
-                        <td><button class="box-btn">Buy Now</button></td>
-                    </tr>
-                    <tr>
-                        <td>Item Price</td>
-                        <td><button class="box-btn">Add to Cart</button></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="box">
-                <img src="delhi.jpeg" alt="">
-                <table>
-                    <tr>
-                        <td>Item Name</td>
-                        <td><button class="box-btn">Buy Now</button></td>
-                    </tr>
-                    <tr>
-                        <td>Item Price</td>
-                        <td><button class="box-btn">Add to Cart</button></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="box">
-                <img src="delhi.jpeg" alt="">
-                <table>
-                    <tr>
-                        <td>Item Name</td>
-                        <td><button class="box-btn">Buy Now</button></td>
-                    </tr>
-                    <tr>
-                        <td>Item Price</td>
-                        <td><button class="box-btn">Add to Cart</button></td>
-                    </tr>
-                </table>
-            </div>
+            <?php }?>
+            
         </div>
-
+        <?php }?>
         <!-- Footer -->
     
 <footer class="footer-distributed" id="footer">

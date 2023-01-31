@@ -41,10 +41,9 @@
   -moz-appearance: textfield;
 } */
 
-.checkout{
+hr{
     margin-top: 3%;
 }
-
 .checkout-btn{
     background-color: #1aae9f;
     border-radius: 6px;
@@ -52,7 +51,33 @@
     padding: 5px;
     color: #fff;
 }
-
+/* css for payment page  */
+.pay-container{
+    background-color: #fff;
+    border-radius: 9px;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin: 5% auto 5% auto;
+    padding: 2% 10% 2% 5%;
+    width: 70%;
+}
+.vr{
+    height: 100%;
+    background-color: green;
+    margin: 0 5em 0 5em;
+}
+.pay-method li {
+    list-style-type: none;
+    padding: 10px;
+}
+.pay-method li a {
+    text-decoration: none;
+    color: black;
+}
+#pay-meth li:hover{
+    background-color: #1aae9f;
+}
 
 
 

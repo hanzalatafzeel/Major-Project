@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
         header("location:login.php");
        }
         if($insert){
-            $_SESSION['regerr'] = false;
+            // $_SESSION['regerr'] = false;
             // if($_POST['type'] == 'admin'){
             //     header("location:admin.html");
             // }

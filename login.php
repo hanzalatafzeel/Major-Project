@@ -4,7 +4,7 @@
 session_start();
 $front = "flip-card-front";
 $back = "flip-card-back";
-if($_SESSION['regerr']){
+if(isset($_SESSION['regerr'])){
     $temp = $front;
     $front = $back;
     $back = $temp;

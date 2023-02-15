@@ -1,0 +1,102 @@
+.middle{
+    width: 100%;
+    display: flex;
+}
+.item-list{
+    background-color: #fff;
+    border-radius: 9px;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    margin: 5% auto 5% auto;
+    padding: 2% 5% 2% 5%;
+    width: 70%;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #8f7a7a;
+    padding: 8px;
+    text-align: center;
+
+  }
+  
+  /* tr:nth-child(even) {
+    background-color: #dddddd;
+  } */
+
+  
+/* course section  */
+.open-button {
+    background-color: #f43127;
+    color: white;
+    padding: 16px 20px;
+    position: fixed;
+    top: 60%;
+    left: 88%;
+    border: none;
+    cursor: pointer;
+    border-radius: 100%;
+    /* opacity: 0.8; */
+    /* width: 180px; */
+  }
+
+  .cancel{
+     background-color: transparent;
+     border: none;
+     position: absolute;
+     top: 5%;
+     left: 71%;
+  }
+  
+  /* The popup form - hidden by default */
+  .form-popup {
+    display: none;
+    position: fixed;
+    width: 100%;
+    top: 25%;
+    left: 0;
+    z-index: 9;
+  }
+ 
+
+/* Q&a section / */
+
+.itemform{
+    margin-left: 25%;
+    width: 50%;
+    border: 2px;
+    background-color: #fff;
+    border-radius: 9px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: left;
+    padding: 5%;
+}
+.itemform input, .qsubmit,#qds{
+
+    border: none;
+    padding-left: 16px;
+    width: 70%;
+    height: 2.2rem;
+    margin:2% 0 1%  0;
+    border: none;
+    border-bottom: 1px solid #222222;
+
+    margin-left: 15%;
+}
+.qsubmit{
+    background-color: #f43127;
+    width: 20%;
+    padding: 0;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#qds{
+    width: 70%;
+    height: 5.2rem;
+    margin:2% 0 1%  0;
+    margin-left: 15%;
+}

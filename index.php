@@ -2,8 +2,9 @@
 @include 'config.php';
 
 session_start();
-$sql = "SELECT `name`,`price`, `image`  FROM `item` ";
+$sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` ";
 $result = $db->query($sql);
+$count = -1;
 ?>
 
 <!DOCTYPE html>
@@ -74,7 +75,8 @@ $result = $db->query($sql);
         </nav>
         <?php if($result->num_rows>0){?>
         <div class="box-container">
-        <?php while($row = $result->fetch_assoc()){ ?>
+        <?php while($row = $result->fetch_assoc()){
+            $count++; ?>
             <div class="box">
                 <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image']); ?>" alt="">
                 <table>
@@ -83,8 +85,14 @@ $result = $db->query($sql);
                         <td><button class="box-btn">Buy Now</button></td>
                     </tr>
                     <tr>
-                        <td> &#8377; <?php echo $row['price']?></td>
-                        <td><button class="box-btn">Add to Cart</button></td>
+                        <td> &#8377; <?php echo $row['price']; ?></td>
+                        <?php $id =  $row['id']; ?>
+                        <td>
+                        <form action="cart.php" method="POST" >
+                        <button type="submit" name="add"  class="box-btn" value="<?php echo $row['id']; ?>">Add to Cart</button>
+                        </form>
+                        </td>
+                        
                     </tr>
                 </table>
             </div>
@@ -152,7 +160,12 @@ $result = $db->query($sql);
 
         </div>
 
-    </div>
+    </div> 
+    <script src="cart.js"></script>
+    <?php if(isset($_SESSION['logged'])){?>
+    <div id="work"></div>
+    <?php }?>
+        
 
 </footer>
 </body>

@@ -41,6 +41,7 @@ if(isset($_SESSION['regerr'])){
     </style>
 
     <script src="login.js"></script>
+    <script src="validation.js"></script>
 
     <title>Canteen</title>
 
@@ -93,7 +94,7 @@ if(isset($_SESSION['regerr'])){
                     <input type="email" name="email" required placeholder="Enter your email">
                     <input type="password" name="password" required placeholder="Enter your password">
 
-                    <input type="submit" id="submit" name="submit" value="login" class="form-btn">
+                    <input type="submit" id="login-s" name="login-s" value="login" class="form-btn">
                     <p>don't have an account? <a id="flip-card-btn-turn-to-back" class="flip">Register</a></p>
                     
                 </form>
@@ -106,22 +107,23 @@ if(isset($_SESSION['regerr'])){
                         <img src="userprofile.png" alt="" >
                     </div> -->
                     <div class="formError"></div>
-                    <select name="type" id="type" onchange="who('type')"  >
+                    <select name="type" id="type" onchange="who('type')" >
                         <option value="null">I am a </option>
                         <option value="student">Bonafide Student</option>
                         <option value="canteen">Canteen</option>
-                        <option value="admin">Admin</option>
+                        <!-- <option value="admin">Admin</option> -->
                     </select>
                     <input type="text" id="student" name="student" class="hide" placeholder="Student Id ">
                     <input type="text" id="canteen" name="canteen" class="hide" placeholder="Canteen Id ">
-                    <input type="text" id="admin" name="admin" class="hide" placeholder="Admin Id ">
+                    <!-- <input type="text" id="admin" name="admin" class="hide" placeholder="Admin Id "> -->
                     <input type="text" id="name" name="name" placeholder="Name">
-                    <input type="email" id="email" name="email"  placeholder="Email">
+                    <input type="email" id="email" name="email" onchange="validateEmail('email','emailerr')" placeholder="Email">
+                    <p id="emailerr" style="color:red;"></p>
                     <input type="number" id="phone" name="phone"  placeholder="Contact Number">
                     <input type="password" name="password" id="password"  placeholder="Enter your password">
                     <input type="password" placeholder="confirm password">
 
-                    <input type="submit" id="submit" name="submit" value="register" class="form-btn">
+                    <input type="submit" id="register-s" name="register-s" value="register" class="form-btn">
                     <p>Already have an account? <a id="flip-card-btn-turn-to-front" class="flip">Login</a></p>
                 
                 </form>

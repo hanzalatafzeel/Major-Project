@@ -65,8 +65,8 @@
     <div class="check">
         <div class="check-container">
             <div class="item"> 
-                <span class="itemName">ItemName</span> <span class="itemQuan " ><i class="fa fa-minus" aria-hidden="true"></i><input
-                        type="number"><i class="fa fa-plus" aria-hidden="true"></i></span> <span class="itemPrice">&#8377;XYZ</span>
+                <span class="itemName">ItemName</span> <span class="itemQuan " ><i class="fa fa-minus" aria-hidden="true"></i><input type="number">
+                <i class="fa fa-plus" aria-hidden="true"></i></span><span class="itemPrice">&#8377;XYZ</span>
             </div>
             <div class="item"> <span class="itemName">ItemName</span> <span  class="itemQuan"><i class="fa fa-minus" aria-hidden="true"></i><input
                         type="number"><i class="fa fa-plus" aria-hidden="true"></i></span> <span class="itemPrice">&#8377;XYZ</span></div>

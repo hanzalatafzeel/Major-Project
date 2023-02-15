@@ -4,8 +4,8 @@ require_once 'config.php';
 require_once 'session.php';
 
 
-if(isset($_POST['submit'])){
-    if($_POST['submit'] == 'register' && $_POST['type'] != 'null'){
+if(isset($_POST['register-s'])){
+    if($_POST['type'] != 'null'){
         $type = $_POST['type'];
         $id = $_POST[$_POST['type']];
         $name = $_POST['name'];
@@ -34,7 +34,13 @@ if(isset($_POST['submit'])){
             header("location:login.php");
         }
     }
-    else if($_POST['submit'] == 'login'){
+    else{
+        $_SESSION['regerr'] = true;
+        header("location:login.php");
+    }
+}
+if(isset($_POST['login-s'])){
+    if($_POST['type'] != 'null'){
         $who = $_POST['who'];
         // $id = $_POST[$_POST['who']];
         $email = $_POST['email'];
@@ -45,7 +51,7 @@ if(isset($_POST['submit'])){
             $result = $db->query($sql);
         } catch (Throwable $th) {
             $_SESSION['logerr'] = true;
-            header('location:login.html');
+            header('location:login.php');
         }
         // if($insert){
         // header("location:index.html");
@@ -56,6 +62,7 @@ if(isset($_POST['submit'])){
             $_SESSION['logged'] = true;
             $_SESSION['name'] = $row['name'];
             $_SESSION['contact'] = $row['contact'];
+            $_SESSION['id'] = $row['id'];
             if($who == 'student'){
                 header('location:index.php');
             }
@@ -65,21 +72,16 @@ if(isset($_POST['submit'])){
             else if($who == 'student'){
                 header('location:index.php');
             }
-    
-        } 
-
+        }
     }
-    else{
-        $_SESSION['regerr'] = false;
-        $_SESSION['logged'] = false;
-        header("location:login.html"); 
-    }    
-
-
-
+    
 }
+else{
 // echo "location:http://". $_SERVER['SERVER_NAME'];
 // header("location:index.html");
 
-
+    $_SESSION['regerr'] = false;
+    $_SESSION['logged'] = false;
+    header("location:login.php");
+} 
 ?>

@@ -77,7 +77,8 @@
             <div class="checkout">
                 <h4>Bill Details</h4>
                 <p>Item Total &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&#8377;XYZ</p>
-                <button class="checkout-btn"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Proceed to checkout</button>
+                <a href="payment.html" class="checkout-btn" <i class="fa fa-shopping-cart" aria-hidden="true"></i>Proceed to checkout</a>
+                <!-- <button href="payment.html" class="checkout-btn"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Proceed to checkout</button> -->
             </div>
 
         </div>

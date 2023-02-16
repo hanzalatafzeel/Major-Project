@@ -1,3 +1,13 @@
+<!-- <?php 
+@include 'config.php';
+
+session_start();
+$id =$_SESSION['id'];
+$sql = "SELECT `name`,`email`, `contact`  FROM `student` where id = '$id' ";
+$result = $db->query($sql);
+$count = -1;
+?> -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,15 +15,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="style.css">
     <!--Bootstrap-css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
     <!--Stylesheet-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="canteen_page.css">
     <!--font-icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -28,14 +39,14 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
     </style>
 
-    <title>Canteen Page</title>
-
+    <title>Profile</title>
 </head>
 
 <body>
+
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand pageName" href="index.html">Canteen</a>
+        <a class="navbar-brand pageName" href="index.html"><span class="yellow">Can</span>teen</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -49,10 +60,20 @@
                     <a class="nav-link" href="#footer">Contact</a>
                 </li>
                 <!-- about button -->
+                <?php if(isset($_SESSION['logged'])){?>
                 <li class="nav-item">
-                    <a class="nav-link" id="signup" href="#signup" value="signup">sign Up</a>
+                    <!-- <a class="nav-link" id="signup" href="login.html" value="signup">sign Up</a> -->
+                    <a class="nav-link" href="logout.php" value="LogOut">LogOut</a>
                 </li>
+                <?php }else{?>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.php" value="Login">Login</a>
+                </li>
+                <?php }?>
                 <!-- login button -->
+                <li class="nav-item">
+                    <a class="nav-link" href="checkout.php">Cart</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="help.html">Help</a>
                 </li>
@@ -60,75 +81,39 @@
         </div>
     </nav>
 
-    <!-- itemlsit -->
-    <div class="middle">
-        <div class="item-list">
-            <table >
-                <tr >
-                    <th>Item Id</th>
-                    <th>Item Name</th>
-                    <th>Item Price</th>
-                    <th>Item Number</th>
-                </tr>
-                
-                <tr>
-                    <td></td>
-                    <td>Biryani</td>
-                    <td>60</td>
-                    <td>343</td>
-                </tr>
-                <tr>
-                    <td>123455</td>
-                    <td>Biryani</td>
-                    <td>60</td>
-                    <td>343</td>
-                </tr>
-                <tr>
-                    <td>123455</td>
-                    <td>Biryani</td>
-                    <td>60</td>
-                    <td>343</td>
-                </tr>
-                
-                <tr>
-                    <td>123455</td>
-                    <td>Biryani</td>
-                    <td>60</td>
-                    <td>343</td>
-                </tr>
-                <tr>
-                    <td>123455</td>
-                    <td>Biryani</td>
-                    <td>60</td>
-                    <td>343</td>
-                </tr>
-                <tr>
-                    <td>123455</td>
-                    <td>Biryani</td>
-                    <td>60</td>
-                    <td>343</td>
-                </tr>
-            </table>
-        </div>
+    <!-- profile section  -->
+    <section class="user-details">
 
-             <!-- add item  -->
-             <button class="open-button" onclick="openForm()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-             <div class="form-popup formd " id="myForm">
-                 <form action="/action_page.php" class="itemform">
-                     <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm()"></i></button>
-                <input type="text" placeholder="Item Id" required >
+        <div class="user">
+        <?php if($result->num_rows>0){
+            $list = $result->fetch_assoc();
+            ?>
+            
+            <div class="profile">
+
+                <img src="user-icon.png" alt="" width="100px">
                 <br>
-                <input type="text" placeholder="Item Name">
-                <input type="text" placeholder="Item Price">
-                <!-- <input type="file" name="" id=""> -->
-                <input #imageInput accept="image/*" (change)="processFile(imageInput)" name="upload-photo" type="file" id="upload-photo" />
-                <input type="text" placeholder="Canteen Id">
-
-                <button class="qsubmit ">Submit</button>
-             </form>
-         </div>
-
+                <br>
+                <p><i class="fas fa-user"></i><span><span><?php echo $list['name'];?></span></span></p>
+                <p><i class="fas fa-phone"></i><span> <?php echo $list['contact'];?></span></p>
+                <p><i class="fas fa-envelope"></i><span><?php echo $list['email'];?></span></p>
+                <button class="box-btn" onclick="openForm()"> Update Info</button>
+            </div>
+            <?php }?>
+        </div>
+    </section>
+    <!-- popup edit -->
+    <div class="form-popup formd " id="myForm">
+        <form action="update.php" class="update-form" method="POST">
+            <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm()"></i></button>
+            <input type="text" name="name" placeholder="Name" value="<?php echo $list['name'];?>">
+            <br>
+            <input type="number" name="contact" placeholder="Phone Number" value="<?php echo $list['contact'];?>">
+            <input type="email" name="email" placeholder="Email" value="<?php echo $list['email'];?>">
+            <button type="submit" class="u-submit" name="update" value="<?php echo $id; ?>">Update Now</button>
+        </form>
     </div>
+
 
     <!-- Footer -->
 
@@ -192,19 +177,23 @@
             </div>
 
         </div>
+        <script src="cart.js"></script>
+        <?php if(isset($_SESSION['logged'])){?>
+        <div id="work"></div>
+        <?php }?>
+
 
     </footer>
+
     <script>
         function openForm() {
-          document.getElementById("myForm").style.display = "block";
+            document.getElementById("myForm").style.display = "block";
         }
-        
+
         function closeForm() {
-          document.getElementById("myForm").style.display = "none";
+            document.getElementById("myForm").style.display = "none";
         }
-        </script>
-
-
+    </script>
 </body>
 
 </html>

@@ -2,6 +2,7 @@
 @include 'config.php';
 
 session_start();
+
 $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` ";
 $result = $db->query($sql);
 $count = -1;
@@ -67,6 +68,12 @@ $count = -1;
                     </li>
                     <?php }?>
                     <!-- login button -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="checkout.php">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">Profile</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="help.html">Help</a>
                     </li>

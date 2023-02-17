@@ -1,3 +1,12 @@
+<?php
+@include 'config.php';
+
+session_start();
+
+$sql = "SELECT `id`,`name`,`price`  FROM `item` ";
+$result = $db->query($sql);
+$count = -1;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,70 +72,44 @@
     <!-- itemlsit -->
     <div class="middle">
         <div class="item-list">
-            <table >
-                <tr >
+            <table>
+                <tr>
                     <th>Item Id</th>
                     <th>Item Name</th>
                     <th>Item Price</th>
-                    <th>Item Number</th>
+                    <!-- <th>Item Number</th> -->
                 </tr>
-                
-                <tr>
-                    <td></td>
-                    <td>Biryani</td>
-                    <td>60</td>
-                    <td>343</td>
-                </tr>
-                <tr>
-                    <td>123455</td>
-                    <td>Biryani</td>
-                    <td>60</td>
-                    <td>343</td>
-                </tr>
-                <tr>
-                    <td>123455</td>
-                    <td>Biryani</td>
-                    <td>60</td>
-                    <td>343</td>
-                </tr>
-                
-                <tr>
-                    <td>123455</td>
-                    <td>Biryani</td>
-                    <td>60</td>
-                    <td>343</td>
-                </tr>
-                <tr>
-                    <td>123455</td>
-                    <td>Biryani</td>
-                    <td>60</td>
-                    <td>343</td>
-                </tr>
-                <tr>
-                    <td>123455</td>
-                    <td>Biryani</td>
-                    <td>60</td>
-                    <td>343</td>
-                </tr>
+                <?php
+                if ($result->num_rows > 0)
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<tr>';
+                        echo '<td>' . $row['id'] . '</td>';
+                        echo '<td>' . $row['name'] . '</td>';
+                        echo '<td>' . $row['price'] . '</td>';
+                        echo '</tr>';
+                    }
+
+                ?>
             </table>
         </div>
 
-             <!-- add item  -->
-             <button class="open-button" onclick="openForm()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-             <div class="form-popup formd " id="myForm">
-                 <form action="/action_page.php" class="itemform">
-                     <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm()"></i></button>
-                <input type="text" placeholder="Item Id" required >
+        <!-- add item  -->
+        <button class="open-button" onclick="openForm()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        <div class="form-popup formd " id="myForm">
+            <form action="/action_page.php" class="itemform">
+                <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm()"></i></button>
+                <input type="text" placeholder="Item Id" required>
                 <br>
                 <input type="text" placeholder="Item Name">
                 <input type="text" placeholder="Item Price">
                 <!-- <input type="file" name="" id=""> -->
-                <input #imageInput accept="image/*" (change)="processFile(imageInput)" name="upload-photo" type="file" id="upload-photo" />
+                <input #imageInput accept="image/*" (change)="processFile(imageInput)" name="upload-photo" type="file"
+                    id="upload-photo" />
                 <input type="text" placeholder="Canteen Id">
 
                 <button class="qsubmit ">Submit</button>
-             </form>
-         </div>
+            </form>
+        </div>
 
     </div>
 
@@ -196,13 +179,13 @@
     </footer>
     <script>
         function openForm() {
-          document.getElementById("myForm").style.display = "block";
+            document.getElementById("myForm").style.display = "block";
         }
-        
+
         function closeForm() {
-          document.getElementById("myForm").style.display = "none";
+            document.getElementById("myForm").style.display = "none";
         }
-        </script>
+    </script>
 
 
 </body>

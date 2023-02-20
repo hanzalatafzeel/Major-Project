@@ -96,18 +96,19 @@ $count = -1;
         <!-- add item  -->
         <button class="open-button" onclick="openForm()"><i class="fa fa-plus" aria-hidden="true"></i></button>
         <div class="form-popup formd " id="myForm">
-            <form action="/action_page.php" class="itemform">
+            <form action="demo.php" class="itemform" method="post">
                 <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm()"></i></button>
-                <input type="text" placeholder="Item Id" required>
+                <input type="text" placeholder="Item Id" required name="id">
                 <br>
-                <input type="text" placeholder="Item Name">
-                <input type="text" placeholder="Item Price">
+                <input type="text" placeholder="Item Name" name="name">
+                <input type="text" placeholder="Item Price" name="price">
                 <!-- <input type="file" name="" id=""> -->
-                <input #imageInput accept="image/*" (change)="processFile(imageInput)" name="upload-photo" type="file"
-                    id="upload-photo" />
-                <input type="text" placeholder="Canteen Id">
+                <!-- <input #imageInput accept="image/*" (change)="processFile(imageInput)" name="imgf" type="file"
+                    id="upload-photo" /> -->
+                    <input type="file" name="imgf">
+                <input type="text" placeholder="Canteen Id" name="c_id">
 
-                <button class="qsubmit ">Submit</button>
+                <button class="qsubmit" name="submit">Submit</button>
             </form>
         </div>
 

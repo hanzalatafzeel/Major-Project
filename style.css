@@ -3,7 +3,7 @@
     background-color: #fbefe4;
     /* display: flex; */
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
 }
 .box{
     background-color: #fff;
@@ -16,7 +16,7 @@
 
 .box img{
     border-radius: 10px 10px 0 0;
-    width: 100%;
+    width: 265px;
     height: 80%;
 }
 .box table{

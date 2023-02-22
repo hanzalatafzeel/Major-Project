@@ -96,7 +96,7 @@ $count = -1;
         <!-- add item  -->
         <button class="open-button" onclick="openForm()"><i class="fa fa-plus" aria-hidden="true"></i></button>
         <div class="form-popup formd " id="myForm">
-            <form action="demo.php" class="itemform" method="post">
+            <form action="demo.php" class="itemform" method="post" enctype="multipart/form-data">
                 <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm()"></i></button>
                 <input type="text" placeholder="Item Id" required name="id">
                 <br>

@@ -69,7 +69,7 @@
                 <span class="itemQuan "><button onclick="dec()"><i class="fa fa-minus"  aria-hidden="true"></i></button>
                     <input type="number" value="1" id="qty">
                     <button onclick="inc()"><i class="fa fa-plus" aria-hidden="true" ></i></button></span>
-                <span class="itemPrice" >&#8377; </span><span" id="tot">60</span><span id="bsc" style="display:none">60</span>
+                <span class="itemPrice" >&#8377; </span><span id="tot">60</span><span id="bsc" style="display:none">60</span>
             </div>
             <!-- <div class="item"> <span class="itemName">ItemName</span> <span class="itemQuan"><i class="fa fa-minus"
                         aria-hidden="true"></i><input type="number"><i class="fa fa-plus" aria-hidden="true"></i></span>
@@ -158,17 +158,17 @@
     </footer>
     <script>
         function inc(){
-            
             let quantity= document.getElementById('qty');
+            let amount = document.getElementById('tot');
+            let basic = document.getElementById('bsc');
             let qty=Number(quantity.value);
+            let amt = Number(amount.innerHTML);
+            let bsc = Number(basic.innerHTML);
             qty++;
-            let amount=document.getElementById('tot');
-            let basic = document.getElementById('bsc').innerHTML;
-
-            let bsc=Number(basic);
-            amount.innerHTML=String(bsc*qty);
+            let tot = bsc*qty;
             quantity.value = String(qty);
-            console.log(bsc*qty);
+            amount.innerHTML = String(tot);
+            basic.innerHTML = String(bsc);
         }
 
         function dec(){     

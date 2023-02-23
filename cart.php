@@ -3,10 +3,10 @@
     @include 'rand.php';
 
     session_start();
-    echo "0";
-    echo $_POST['add'];
-    if(isset($_POST['add'])){
-        echo "1";
+   if(isset($_SESSION['id'])){
+
+       if(isset($_POST['add'])){
+           echo "1";
         $item = $_POST['add'];
         $s_id = $_SESSION['id'];
         $fetch = "SELECT `price` FROM `item` WHERE id = '$item' ";
@@ -56,4 +56,8 @@
             
         }
     }
+}
+else{
+    header('location: index.php');
+}
 ?>

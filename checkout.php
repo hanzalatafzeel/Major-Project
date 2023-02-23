@@ -7,11 +7,12 @@ if(!isset($_SESSION['id'])){
     header("location: login.php");
 }
 $uid = $_SESSION['id'];
-$sql = "SELECT `order_id` from `order-list` where s_id = '$uid'";
+$sql = "SELECT `order_id`,`amount` from `order-list` where s_id = '$uid'";
 $result = $db->query($sql);
 if($result->num_rows>0){
     $orders = $result->fetch_assoc();
 $oid = $orders['order_id'];
+$_SESSION['oid'] = $oid;
 $sql = "SELECT `item_id`,`qty`,`amount` from orders where order_id = '$oid'" ;
 $result = $db->query($sql);
 }
@@ -91,16 +92,22 @@ $count = -1;
            while( $list = $result->fetch_assoc()){
             $id = $list['item_id'];
             $sql = "SELECT `name`,`price` from item where id='$id'";
-            $result = $db->query($sql);
-            $item = $result->fetch_assoc();
+            $get = $db->query($sql);
+            $item = $get->fetch_assoc();
 
             ?>
             <div class="item">
+               
                 <span class="itemName"><?php echo $item['name']?></span> 
                 <span class="itemQuan "><button onclick="dec('<?php echo $id?>')"><i class="fa fa-minus"  aria-hidden="true"></i></button>
-                    <input type="number" value="<?php echo $list['qty']?>" id="<?php echo $id?>">
+                    <input type="number"  value="<?php echo $list['qty']?>" id="<?php echo $id?>">
                     <button onclick="inc('<?php echo $id?>')"><i class="fa fa-plus" aria-hidden="true" ></i></button></span>
                 <span class="itemPrice" >&#8377; </span><span id="<?php echo "tot".$id;?>"><?php echo $list['amount'];?></span><span id="<?php echo "bsc".$id?>" style="display:none"><?php echo $item['price']?></span>
+                <form action="set.php" method="post" style="display:none">
+                <input type="text" name="item" value="<?php echo $id?>">    
+                <input type="number" name="qty" value="" id="<?php echo "qty".$id?>"> 
+                <input type="submit" name="set" id="<?php echo "set".$id;?>" value="<?php echo $item['price']?>" style="display:none">
+           </form  >
             </div>
             <?php
            }
@@ -117,7 +124,7 @@ $count = -1;
             <hr>
             <div class="checkout">
                 <h4>Bill Details</h4>
-                <p>Item Total &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&#8377;XYZ</p>
+                <p>Item Total &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&#8377;<?php echo $orders['amount']?></p>
                 <a href="payment.html" class="checkout-btn"><i class="fa fa-shopping-cart"
                         aria-hidden="true"></i>Proceed to checkout</a>
                 <!-- <button href="payment.html" class="checkout-btn"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Proceed to checkout</button> -->
@@ -197,6 +204,8 @@ $count = -1;
             let quantity= document.getElementById(id);
             let idt = "tot"+id;
             let bst = "bsc"+id;
+            let q = "qty"+id;
+            let set = "set"+id;
             let amount = document.getElementById(idt);
             let basic = document.getElementById(bst);
             let qty=Number(quantity.value);
@@ -211,12 +220,17 @@ $count = -1;
             quantity.value = String(qty);
             amount.innerHTML = String(tot);
             basic.innerHTML = String(bsc);
+            document.getElementById(q).value = String(qty);  
+            document.getElementById(set).click();
+
         }
 
         function dec(id){     
             let quantity= document.getElementById(id);
             let idt = "tot"+id;
             let bst = "bsc"+id;
+            let q = "qty"+id;
+            let set = "set"+id;
             let amount = document.getElementById(idt);
             let basic = document.getElementById(bst);
             let qty=Number(quantity.value);
@@ -228,9 +242,16 @@ $count = -1;
             {
                 tot = bsc*qty;
             }
+            else{
+                qty = 0;
+            }
+            
             quantity.value = String(qty);   
             amount.innerHTML = String(tot);
-            basic.innerHTML = String(bsc);      
+            basic.innerHTML = String(bsc);  
+            document.getElementById(q).value = String(qty);    
+            document.getElementById(set).click();
+
         }
     </script>
 </body>

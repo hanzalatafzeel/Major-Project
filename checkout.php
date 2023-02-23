@@ -1,3 +1,25 @@
+<?php 
+@include 'config.php';
+
+session_start();
+
+if(!isset($_SESSION['id'])){
+    header("location: login.php");
+}
+$uid = $_SESSION['id'];
+$sql = "SELECT `order_id` from `order-list` where s_id = '$uid'";
+$result = $db->query($sql);
+if($result->num_rows>0){
+    $orders = $result->fetch_assoc();
+$oid = $orders['order_id'];
+$sql = "SELECT `item_id`,`qty`,`amount` from orders where order_id = '$oid'" ;
+$result = $db->query($sql);
+}
+
+
+$count = -1;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +31,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="checkout.css">
     <!--Bootstrap-css-->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
     <!--Stylesheet-->
@@ -64,13 +87,26 @@
     <!-- checkout -->
     <div class="check">
         <div class="check-container">
+            <?php if($result->num_rows>0){
+           while( $list = $result->fetch_assoc()){
+            $id = $list['item_id'];
+            $sql = "SELECT `name`,`price` from item where id='$id'";
+            $result = $db->query($sql);
+            $item = $result->fetch_assoc();
+
+            ?>
             <div class="item">
-                <span class="itemName">ItemName</span> 
-                <span class="itemQuan "><button onclick="dec()"><i class="fa fa-minus"  aria-hidden="true"></i></button>
-                    <input type="number" value="1" id="qty">
-                    <button onclick="inc()"><i class="fa fa-plus" aria-hidden="true" ></i></button></span>
-                <span class="itemPrice" >&#8377; </span><span id="tot">60</span><span id="bsc" style="display:none">60</span>
+                <span class="itemName"><?php echo $item['name']?></span> 
+                <span class="itemQuan "><button onclick="dec('<?php echo $id?>')"><i class="fa fa-minus"  aria-hidden="true"></i></button>
+                    <input type="number" value="<?php echo $list['qty']?>" id="<?php echo $id?>">
+                    <button onclick="inc('<?php echo $id?>')"><i class="fa fa-plus" aria-hidden="true" ></i></button></span>
+                <span class="itemPrice" >&#8377; </span><span id="<?php echo "tot".$id;?>"><?php echo $list['amount'];?></span><span id="<?php echo "bsc".$id?>" style="display:none"><?php echo $item['price']?></span>
             </div>
+            <?php
+           }
+
+            }
+            ?>
             <!-- <div class="item"> <span class="itemName">ItemName</span> <span class="itemQuan"><i class="fa fa-minus"
                         aria-hidden="true"></i><input type="number"><i class="fa fa-plus" aria-hidden="true"></i></span>
                 <span class="itemPrice">&#8377;XYZ</span></div>
@@ -157,29 +193,41 @@
 
     </footer>
     <script>
-        function inc(){
-            let quantity= document.getElementById('qty');
-            let amount = document.getElementById('tot');
-            let basic = document.getElementById('bsc');
+        function inc(id){
+            let quantity= document.getElementById(id);
+            let idt = "tot"+id;
+            let bst = "bsc"+id;
+            let amount = document.getElementById(idt);
+            let basic = document.getElementById(bst);
             let qty=Number(quantity.value);
             let amt = Number(amount.innerHTML);
             let bsc = Number(basic.innerHTML);
             qty++;
-            let tot = bsc*qty;
+            let tot =0;
+            if(qty>=0)
+            {
+                tot = bsc*qty;
+            }
             quantity.value = String(qty);
             amount.innerHTML = String(tot);
             basic.innerHTML = String(bsc);
         }
 
-        function dec(){     
-            let quantity= document.getElementById('qty');
-            let amount = document.getElementById('tot');
-            let basic = document.getElementById('bsc');
+        function dec(id){     
+            let quantity= document.getElementById(id);
+            let idt = "tot"+id;
+            let bst = "bsc"+id;
+            let amount = document.getElementById(idt);
+            let basic = document.getElementById(bst);
             let qty=Number(quantity.value);
             let amt = Number(amount.innerHTML);
             let bsc = Number(basic.innerHTML);
+            let tot = 0;
             qty--;
-            let tot = bsc*qty;
+            if(qty>=0)
+            {
+                tot = bsc*qty;
+            }
             quantity.value = String(qty);   
             amount.innerHTML = String(tot);
             basic.innerHTML = String(bsc);      

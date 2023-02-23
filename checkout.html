@@ -173,9 +173,16 @@
 
         function dec(){     
             let quantity= document.getElementById('qty');
+            let amount = document.getElementById('tot');
+            let basic = document.getElementById('bsc');
             let qty=Number(quantity.value);
+            let amt = Number(amount.innerHTML);
+            let bsc = Number(basic.innerHTML);
             qty--;
-            quantity.value = String(qty);         
+            let tot = bsc*qty;
+            quantity.value = String(qty);   
+            amount.innerHTML = String(tot);
+            basic.innerHTML = String(bsc);      
         }
     </script>
 </body>

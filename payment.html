@@ -70,7 +70,7 @@
                 <!-- <li><a href=""> <i class="fa-solid fa-wallet"></i>  Wallet </a></li> -->
                 <li><a href="#" onclick="upishow()" > <img src="icons8-bhim-upi-50.png" alt="" width="20"> UPI </a></li>
                 <li><a href="#"  onclick="cardshow()" ><i class="fa fa-credit-card"></i> Credit & Debit cards</a></li>
-                <li><a href=""><i class="fa fa-money" aria-hidden="true"></i> Pay at canteen</a></li>
+                <li><a href="#" onclick="pod()" ><i class="fa fa-money" aria-hidden="true"></i> Pay at canteen</a></li>
             </div>
             <div class="vr">
                 
@@ -164,6 +164,10 @@
                     <button class="checkout-btn" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377;XYZ</button>
                   </form>
             </div>
+            <div class="pay-method " id="pod">
+                <h4>Cash on Delivery</h4>
+                <button class="checkout-btn" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377;XYZ</button>
+            </div>
         </div>
     </div>
 
@@ -237,12 +241,20 @@
         function upishow(){
             document.getElementById("payupi").style.display ="block";
             document.getElementById("paycard").style.display ="none";  
+            document.getElementById("pod").style.display="none";
+
 
         }
         function cardshow(){
+            document.getElementById("paycard").style.display ="block";    
+            document.getElementById("payupi").style.display ="none";  
+            document.getElementById("pod").style.display="none";
+        }
+        function pod(){
+            document.getElementById("pod").style.display="block";
+            document.getElementById("paycard").style.display ="none"; 
             document.getElementById("payupi").style.display ="none";  
 
-            document.getElementById("paycard").style.display ="block";    
         }
     </script>
 </body>

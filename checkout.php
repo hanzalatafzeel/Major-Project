@@ -98,11 +98,12 @@ $count = -1;
             ?>
             <div class="item">
                
-                <span class="itemName"><?php echo $item['name']?></span> 
-                <span class="itemQuan "><button onclick="dec('<?php echo $id?>')"><i class="fa fa-minus"  aria-hidden="true"></i></button>
+                <div class="item-box" id="itemName"><?php echo $item['name']?></div> 
+                <div class="item-box ">
+                    <button class="cart-btn" onclick="dec('<?php echo $id?>')"><i class="fa fa-minus"  aria-hidden="true"></i></button>
                     <input type="number"  value="<?php echo $list['qty']?>" id="<?php echo $id?>">
-                    <button onclick="inc('<?php echo $id?>')"><i class="fa fa-plus" aria-hidden="true" ></i></button></span>
-                <span class="itemPrice" >&#8377; </span><span id="<?php echo "tot".$id;?>"><?php echo $list['amount'];?></span><span id="<?php echo "bsc".$id?>" style="display:none"><?php echo $item['price']?></span>
+                    <button class="cart-btn" onclick="inc('<?php echo $id?>')"><i class="fa fa-plus" aria-hidden="true" ></i></button></div>
+                <div class="item-box" id="itemPrice">&#8377; </span><span id="<?php echo "tot".$id;?>"><?php echo $list['amount'];?></span><span id="<?php echo "bsc".$id?>" style="display:none"><?php echo $item['price']?></div>
                 <form action="set.php" method="post" style="display:none">
                 <input type="text" name="item" value="<?php echo $id?>">    
                 <input type="number" name="qty" value="" id="<?php echo "qty".$id?>"> 

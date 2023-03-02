@@ -60,7 +60,7 @@ $count = -1;
 
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand pageName" href="./">Canteen</a>
+        <a class="navbar-brand pageName" href="index.html">Canteen</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -98,11 +98,12 @@ $count = -1;
             ?>
             <div class="item">
                
-                <span class="itemName"><?php echo $item['name']?></span> 
-                <span class="itemQuan "><button onclick="dec('<?php echo $id?>')"><i class="fa fa-minus"  aria-hidden="true"></i></button>
+                <div class="item-box" id="itemName"><?php echo $item['name']?></div> 
+                <div class="item-box ">
+                    <button class="cart-btn" onclick="dec('<?php echo $id?>')"><i class="fa fa-minus"  aria-hidden="true"></i></button>
                     <input type="number"  value="<?php echo $list['qty']?>" id="<?php echo $id?>">
-                    <button onclick="inc('<?php echo $id?>')"><i class="fa fa-plus" aria-hidden="true" ></i></button></span>
-                <span class="itemPrice" >&#8377; </span><span id="<?php echo "tot".$id;?>"><?php echo $list['amount'];?></span><span id="<?php echo "bsc".$id?>" style="display:none"><?php echo $item['price']?></span>
+                    <button class="cart-btn" onclick="inc('<?php echo $id?>')"><i class="fa fa-plus" aria-hidden="true" ></i></button></div>
+                <div class="item-box" id="itemPrice">&#8377; </span><span id="<?php echo "tot".$id;?>"><?php echo $list['amount'];?></span><span id="<?php echo "bsc".$id?>" style="display:none"><?php echo $item['price']?></div>
                 <form action="set.php" method="post" style="display:none">
                 <input type="text" name="item" value="<?php echo $id?>">    
                 <input type="number" name="qty" value="" id="<?php echo "qty".$id?>"> 
@@ -110,26 +111,22 @@ $count = -1;
            </form  >
             </div>
             <?php
-           }
+           }?>
 
-            }
-            ?>
-            <!-- <div class="item"> <span class="itemName">ItemName</span> <span class="itemQuan"><i class="fa fa-minus"
-                        aria-hidden="true"></i><input type="number"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                <span class="itemPrice">&#8377;XYZ</span></div>
-            <div class="item"> <span class="itemname">ItemName</span> <span class="itemQuan"><i class="fa fa-minus"
-                        aria-hidden="true"></i><input type="number"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                <span class="itemPrice">&#8377;XYZ</span>
-            </div> -->
+    
             <hr>
             <div class="checkout">
                 <h4>Bill Details</h4>
                 <p>Item Total &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&#8377;<?php echo $orders['amount']?></p>
                 <a href="payment.html" class="checkout-btn"><i class="fa fa-shopping-cart"
-                        aria-hidden="true"></i>Proceed to checkout</a>
+                aria-hidden="true"></i>Proceed to checkout</a>
                 <!-- <button href="payment.html" class="checkout-btn"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Proceed to checkout</button> -->
             </div>
-
+       <?php }else{
+        ?>
+        <div> <h1>Your cart is empty !</h1> </div>
+        <?php }?>
+            
         </div>
     </div>
 

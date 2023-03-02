@@ -22,7 +22,8 @@ if(isset($_SESSION['regerr'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
     <!--Stylesheet-->
-    <link rel="stylesheet" href="login.css">
+    <!-- <link rel="stylesheet" href="login.css"> -->
+    <link rel="stylesheet" href="style1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="navbar.css">
@@ -34,7 +35,9 @@ if(isset($_SESSION['regerr'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
-
+ <!-- Owl-carousel CDN -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
     <!-- font poppins -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
@@ -76,15 +79,12 @@ if(isset($_SESSION['regerr'])){
         </nav>
 
     <!-- login flip  -->
-    <div class="flip-card-3D-wrapper log-box">
+    <!-- <div class="flip-card-3D-wrapper log-box">
         <div id="flip-card">
             <div class="<?php echo $front;?>">
 
                 <form action="form.php" method="post" enctype="multipart/form-data">
-                    <!-- <div class="image">
-
-                        <img src="userprofile.png" alt="">
-                    </div> -->
+                   
                     <select name="who" id="who" >
                         <option value="null">I am a </option>
                         <option value="student">Bonafide Student</option>
@@ -99,23 +99,18 @@ if(isset($_SESSION['regerr'])){
                     
                 </form>
             </div>
-            <!-- signup flip  -->
+            signup flip  
             <div class="<?php echo $back;?>">
                 
                 <form action="form.php" method="POST"  enctype="multipart/form-data">
-                    <!-- <div class="image">
-                        <img src="userprofile.png" alt="" >
-                    </div> -->
                     <div class="formError"></div>
                     <select name="type" id="type" onchange="who('type')" >
                         <option value="null">I am a </option>
                         <option value="student">Bonafide Student</option>
                         <option value="canteen">Canteen</option>
-                        <!-- <option value="admin">Admin</option> -->
                     </select>
                     <input type="text" id="student" name="student" class="hide" placeholder="Student Id ">
                     <input type="text" id="canteen" name="canteen" class="hide" placeholder="Canteen Id ">
-                    <!-- <input type="text" id="admin" name="admin" class="hide" placeholder="Admin Id "> -->
                     <input type="text" id="name" name="name" placeholder="Name">
                     <input type="email" id="email" name="email" onchange="validateEmail('email','emailerr')" placeholder="Email">
                     <p id="emailerr" style="color:red;"></p>
@@ -129,11 +124,79 @@ if(isset($_SESSION['regerr'])){
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
     <div>
 
+    </div>
+
+    <!-- Login Page (START)-->
+    <div class="upper-login" id="upperLogin">
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="form.php" method="POST"  enctype="multipart/form-data">
+                    <h1>Create Account</h1>
+                    <div class="formError"></div>
+                    <select name="type" id="type" onchange="who('type')" >
+                        <option value="null">I am a </option>
+                        <option value="student">Bonafide Student</option>
+                        <option value="canteen">Canteen</option>
+                    </select>
+                    <input type="text" id="student" name="student" class="hide" placeholder="Student Id ">
+                    <input type="text" id="canteen" name="canteen" class="hide" placeholder="Canteen Id ">
+                    <input type="text" id="name" name="name" placeholder="Name">
+                    <input type="email" id="email" name="email" onchange="validateEmail('email','emailerr')" placeholder="Email">
+                    <!-- <p id="emailerr" style="color:red;"></p> -->
+                    <input type="number" id="phone" name="phone"  placeholder="Contact Number">
+                    <input type="password" name="password" id="password"  placeholder="Enter your password">
+                    <input type="password" placeholder="confirm password">
+                    <button type="submit" id="register-s" name="register-s" >SignUp</button>
+                    
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form action="form.php" method="post" enctype="multipart/form-data">
+                    <h1>Sign In</h1>
+                    <div class="social-container">
+                        <a href="#" class="food_icon" onClick="return false;"><i class="fas fa-hamburger"></i></a>
+                        <a href="#" class="food_icon" onClick="return false;"><i class="fas fa-ice-cream"></i></a>
+                        <a href="#" class="food_icon" onClick="return false;"><i class="fas fa-pizza-slice"></i></a>
+                    </div>
+                    <span>use your account</span>
+                    <select name="who" id="who" >
+                        <option value="null">I am a </option>
+                        <option value="student">Bonafide Student</option>
+                        <option value="canteen">Canteen</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <input type="email" name="email" required placeholder="Enter your email">
+                    <input type="password" name="password" required placeholder="Enter your password">
+                    <button type="submit" id="login-s" name="login-s">Sign In</button>
+                    
+                    <!-- <input type="submit" id="login-s" name="login-s" value="login" class="form-btn"> -->
+                    <!-- <p>don't have an account? <a id="flip-card-btn-turn-to-back" class="flip">Register</a></p> -->
+
+                    <!-- <input type="email" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="Password">-->
+
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>Login with your personal info and pre-order food now</p>
+                        <button class="ghost" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>HUNGRY !</h1>
+                        <p>Enter your details and pre-order food now</p>
+                        <button class="ghost" id="signUp">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Footer -->
     
@@ -198,6 +261,19 @@ if(isset($_SESSION['regerr'])){
     </div>
 
 </footer>
+
+<script>
+    const signUpButton = document.getElementById('signUp');
+	const signInButton = document.getElementById('signIn');
+	// const container = document.getElementById('container');
+
+	signUpButton.addEventListener('click', () => {
+		container.classList.add("right-panel-active");
+	});
+	signInButton.addEventListener('click', () => {
+		container.classList.remove("right-panel-active");
+	});
+</script>
 
 
 </body>

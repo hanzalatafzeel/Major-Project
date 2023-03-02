@@ -6,5 +6,5 @@ session_start();
 session_unset();
 session_destroy();
 
-header('location:/Major-Project/');
+header('location:/Major-Project/login.php');
 ?>

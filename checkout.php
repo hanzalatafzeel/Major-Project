@@ -111,26 +111,22 @@ $count = -1;
            </form  >
             </div>
             <?php
-           }
+           }?>
 
-            }
-            ?>
-            <!-- <div class="item"> <span class="itemName">ItemName</span> <span class="itemQuan"><i class="fa fa-minus"
-                        aria-hidden="true"></i><input type="number"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                <span class="itemPrice">&#8377;XYZ</span></div>
-            <div class="item"> <span class="itemname">ItemName</span> <span class="itemQuan"><i class="fa fa-minus"
-                        aria-hidden="true"></i><input type="number"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                <span class="itemPrice">&#8377;XYZ</span>
-            </div> -->
+    
             <hr>
             <div class="checkout">
                 <h4>Bill Details</h4>
                 <p>Item Total &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&#8377;<?php echo $orders['amount']?></p>
                 <a href="payment.html" class="checkout-btn"><i class="fa fa-shopping-cart"
-                        aria-hidden="true"></i>Proceed to checkout</a>
+                aria-hidden="true"></i>Proceed to checkout</a>
                 <!-- <button href="payment.html" class="checkout-btn"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Proceed to checkout</button> -->
             </div>
-
+       <?php }else{
+        ?>
+        <div> <h1>Your cart is empty !</h1> </div>
+        <?php }?>
+            
         </div>
     </div>
 

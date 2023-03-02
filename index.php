@@ -64,6 +64,12 @@ $count = -1;
                         <!-- <a class="nav-link" id="signup" href="login.html" value="signup">sign Up</a> -->
                         <a class="nav-link"  href="logout.php" value="LogOut">LogOut</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="checkout.php">Cart</a>
+                    </li>
                     <?php }else{?>
                         <li class="nav-item">
                         <a class="nav-link" href="login.php" value="Login">Login</a>
@@ -71,46 +77,51 @@ $count = -1;
                     <?php }?>
                     <!-- login button -->
                     <li class="nav-item">
-                        <a class="nav-link" href="checkout.php">Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="help.html">Help</a>
                     </li>
                 </ul>
             </div>
         </nav>
 
+        <!-- <div class="container">
+            <div class="sidebar">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus consectetur similique laboriosam maiores rem ipsa esse nostrum ipsum ab est. Cum sunt consequuntur cupiditate atque maxime neque placeat consequatur repellat.
+            </div>
 
-        <?php if($result->num_rows>0){?>
-        <div class="box-container">
-        <?php while($row = $result->fetch_assoc()){
-            $count++; ?>
-            <div class="box">
-                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image']); ?>" alt="">
-                <table>
-                    <tr>
-                        <td><?php echo $row['name']?></td>
-                        <td><button class="box-btn">Buy Now</button></td>
-                    </tr>
-                    <tr>
-                        <td> &#8377; <?php echo $row['price']; ?></td>
-                        <?php $id =  $row['id']; ?>
-                        <td>
-                        <form action="cart.php" method="POST" >
-                        <button type="submit" name="add"  class="box-btn" value="<?php echo $row['id']; ?>">Add to Cart</button>
-                        </form>
-                        </td>
-                        
-                    </tr>
-                </table>
+            <div class="main">
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quis debitis eligendi sit quasi dolor et a impedit omnis cumque?
+            </div> -->
+
+            <?php if($result->num_rows>0){?>
+            <div class="box-container">
+            <?php while($row = $result->fetch_assoc()){
+                $count++; ?>
+                <div class="box">
+                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image']); ?>" alt="">
+                    <table>
+                        <tr>
+                            <td><?php echo $row['name']?></td>
+                            <td><button class="box-btn">Buy Now</button></td>
+                        </tr>
+                        <tr>
+                            <td> &#8377; <?php echo $row['price']; ?></td>
+                            <?php $id =  $row['id']; ?>
+                            <td>
+                            <form action="cart.php" method="POST" >
+                            <button type="submit" name="add"  class="box-btn" value="<?php echo $row['id']; ?>">Add to Cart</button>
+                            </form>
+                            </td>
+                            
+                        </tr>
+                    </table>
+                </div>
+                <?php }?>
+                
             </div>
             <?php }?>
-            
-        </div>
-        <?php }?>
+
+        <!-- </div> -->
+
         <!-- Footer -->
     
 <footer class="footer-distributed" id="footer">

@@ -1,11 +1,8 @@
 .navbar{
-    /* background-color: #f43127; */
-    /* background: -webkit-linear-gradient(to right, #ff6014, #ff6014); */
 	background: linear-gradient(to right, #FF416C, #ff6014);
     position: sticky;
     width: 100vw;
     margin-top: -1px;
-    
   }
   .yellow{
     color: gold;
@@ -18,7 +15,6 @@
   .collapse{
     padding-right:30px ;
   }
-  
   .pageName{
     padding-left: 50px;
   }

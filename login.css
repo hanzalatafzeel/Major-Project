@@ -40,7 +40,7 @@
     border-bottom: 1px solid #222222;
   }
 
-  .flip-card-back form select{
+  .sign-in-container form select{
     width: 76%;
     margin-top: 0.5rem;
     padding: 8px 15px;

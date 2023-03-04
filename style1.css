@@ -1,6 +1,25 @@
 body{
     background-color: #fbefe4;
 }
+
+.err-banner  {
+	border: 1px solid rgb(216,23,23);
+	/* background-color: rgba(144, 123, 123, 0.673); */
+	box-shadow: 0px 0px 5px 1px rgba(216,23,23,0.66);
+	border-radius: 5px;
+	text-align: center;
+	margin: 0 auto 10px auto;
+	width: 50%;
+}
+
+/* .err-banner  {
+	border: 1px solid rgb(21, 83, 20);
+	background-color: rgb(21, 83, 20,0.3);
+	border-radius: 5px;
+	text-align: center;
+	margin: 0 auto 10px auto;
+	width: 50%;
+} */
 /* Sign up / Sign in form */
 .upper-login{
     font-family: 'Montserrat', sans-serif;

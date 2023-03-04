@@ -40,7 +40,7 @@ if(isset($_POST['register-s'])){
     }
 }
 if(isset($_POST['login-s'])){
-    if($_POST['type'] != 'null'){
+    if($_POST['who'] != 'null'){
         $who = $_POST['who'];
         // $id = $_POST[$_POST['who']];
         $email = $_POST['email'];

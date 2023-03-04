@@ -133,9 +133,9 @@ if(isset($_SESSION['regerr'])){
 
     <!-- Login Page (START)-->
     <div class="upper-login" id="upperLogin">
-        <div class="err-banner">
+        <!-- <div class="err-banner">
                 Wrong password
-        </div>
+        </div> -->
         <div class="container" id="container">
             <div class="form-container sign-up-container">
                 <form action="form.php" method="POST"  enctype="multipart/form-data">

@@ -1,10 +1,23 @@
 <?php
-@include 'config.php';
+
 
 session_start();
 
-$sql = "SELECT `id`,`name`,`price`  FROM `item` ";
+function get(){
+    @include 'config.php';
+    $sql = "SELECT `order_id`,`time`,`amount`,`paid`  FROM `order-list` where status = true ";
 $result = $db->query($sql);
+return $result;
+}
+
+function view($oid){
+    @include 'config.php';
+$sql = "SELECT `orders`.`qty`, `item`.`name` FROM orders INNER join item ON `orders`.`item_id` = `item`.`id` where order_id = '$oid' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0)
+    return $result;
+
+}
 $count = -1;
 ?>
 <!DOCTYPE html>
@@ -72,47 +85,78 @@ $count = -1;
     <!-- itemlsit -->
     <div class="middle">
         <div class="item-list">
+                <?php $result = get();
+                if ($result->num_rows > 0){?>
             <table>
                 <tr>
-                    <th>Item Id</th>
-                    <th>Item Name</th>
-                    <th>Item Price</th>
-                    <!-- <th>Item Number</th> -->
+                    <th>Order Id</th>
+                    <th>Amount</th>
+                    <th>Time</th>
+                    <th>Payment status</th>
+                    <th>View Order</th>
+                    
                 </tr>
-                <?php
-                if ($result->num_rows > 0)
-                    while ($row = $result->fetch_assoc()) {
-                        echo '<tr>';
-                        echo '<td>' . $row['id'] . '</td>';
-                        echo '<td>' . $row['name'] . '</td>';
-                        echo '<td>' . $row['price'] . '</td>';
-                        echo '</tr>';
-                    }
-
-                ?>
+                <?php while ($row = $result->fetch_assoc()) {?>
+                <tr>
+                    <td><?php echo $row['order_id'];?></td>
+                    <td><?php echo $row['amount'];?></td>
+                    <td><?php echo $row['time'];?></td>
+                    <?php if($row['paid']){?>
+                    <td>paid</td>
+                    <td><button  onclick="vieworder('<?php echo $row['order_id'];?>')">View</button></td>
+                    <?php }else{?>
+                        <td>Not Paid</td>
+                        <td></td>
+                        <?php } ?>
+                </tr>
+                <?php } ?>
             </table>
+            <?php } ?>
+            
+
+           
         </div>
 
-        <!-- add item  -->
-        <button class="open-button" onclick="openForm()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-        <div class="form-popup " id="myForm">
-            <form action="demo.php" class="itemform" method="post" enctype="multipart/form-data">
-                <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm()"></i></button>
-                <input type="text" placeholder="Item Id" required name="id">
-                <br>
-                <input type="text" placeholder="Item Name" name="name">
-                <input type="text" placeholder="Item Price" name="price">
-                <!-- <input type="file" name="" id=""> -->
-                <!-- <input #imageInput accept="image/*" (change)="processFile(imageInput)" name="imgf" type="file"
-                    id="upload-photo" /> -->
-                    <input type="file" name="imgf">
-                <input type="text" placeholder="Canteen Id" name="c_id">
-
-                <button class="qsubmit" name="submit">Submit</button>
-            </form>
-        </div>
 
     </div>
+    <?php 
+     $result = get();
+    if ($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){
+            if($row['paid']){
+                $get = view($row['order_id']);
+
+        ?>
+        <div class="order-box" id="<?php echo $row['order_id'];?>">
+            <div class="content" id="unblurred" >
+                <button class="close-btn" onclick="closeorder('<?php echo $row['order_id'];?>')"><i class="fa fa-close"></i></button>
+
+                <h2>Order Details</h2>
+                <table id="order-table">
+                    <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        
+                    </tr>
+                <?php while($list = $get->fetch_assoc()){ ?>
+                    <tr>
+                        <td><?php echo $list['name'];?></td>
+                        <td><?php echo $list['qty'];?></td>
+                    </tr>
+                    <?php } ?>
+                </table>
+
+                <button class="order-ready" >Mark as Ready</button>
+            </div>
+        </div>
+        <?php
+        }
+    }
+    }
+    ?>
+
+       
+
 
     <!-- Footer -->
 
@@ -176,16 +220,18 @@ $count = -1;
             </div>
 
         </div>
+        
 
     </footer>
     <script>
-        function openForm() {
-            document.getElementById("myForm").style.display = "block";
+        function vieworder(id) {
+            document.getElementById(id).style.display="block";
+        }
+        function closeorder(id) {
+            document.getElementById(id).style.display="none";
         }
 
-        function closeForm() {
-            document.getElementById("myForm").style.display = "none";
-        }
+        
     </script>
 
 

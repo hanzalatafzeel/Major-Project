@@ -24,8 +24,8 @@ if(isset($_POST['pay'])){
     $sql = "UPDATE `order-list` SET `status`= true WHERE order_id = '$oid'";
     $result = $db->query($sql);
     if($result){
-        unset($_SESSION['oid']);
-        header("location: ./");
+      
+        header("location: invoice.php");
         
     }
 
@@ -204,6 +204,7 @@ if(isset($_POST['pay'])){
             <div class="pay-method " id="pod">
                 <h4>Cash on Delivery</h4>
                 <form action="" method="post">
+                    
                     <button class="checkout-btn" name="pay" id="pay" value="paid" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377; <?php echo $orders['amount']; ?></button>
                 </form>
             </div>

@@ -85,7 +85,7 @@ $count = -1;
                 </li>
                 <!-- about button -->
                 <li class="nav-item">
-                    <a class="nav-link" id="signup" href="login.html" value="signup">sign Up</a>
+                    <a class="nav-link" id="signup" href="login.php" value="signup">sign Up</a>
                 </li>
                 <!-- login button -->
                 <li class="nav-item">
@@ -123,7 +123,7 @@ $count = -1;
                         <div class="item-box" id="itemPrice">&#8377; </span><span id="<?php echo "tot" . $id; ?>">
                                 <?php echo $list['amount']; ?>
                             </span><span id="<?php echo "bsc" . $id ?>" style="display:none">
-                                <?php echo $item['price'] ?>
+                            <?php echo $item['price'] ?>
                         </div>
                         <div class="item-box" id="deleteItem">
                             <form action="" method="post">

@@ -1,3 +1,38 @@
+<?php
+@include 'config.php';
+
+session_start();
+
+if (!isset($_SESSION['id'])) {
+    header("location: login.php");
+}
+if(isset($_SESSION['oid'])){
+    $uid = $_SESSION['id'];
+$oid = $_SESSION['oid'];
+$sql = "SELECT `amount` from `order-list` where order_id = '$oid'";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+    $orders = $result->fetch_assoc();
+    
+}
+}else{
+    header("location: ./");
+}
+
+if(isset($_POST['pay'])){
+
+    $sql = "UPDATE `order-list` SET `status`= true WHERE order_id = '$oid'";
+    $result = $db->query($sql);
+    if($result){
+        unset($_SESSION['oid']);
+        header("location: ./");
+        
+    }
+
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,7 +116,9 @@
                 <li><a href=""><img src="icons8-phone-pe-48.png" alt="" width="22px"> PhonePe</a></li>
                 <li><a href=""><i class='fab fa-amazon-pay'></i> Amazon Pay</a></li>
                 <li><a href=""><img src="icons8-paytm-48.png" alt="" width="22">  Paytm</a></li>
-                <button class="checkout-btn" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377;XYZ</button>
+                
+                    <button class="checkout-btn" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377;XYZ</button>
+               
             </div>
 
             <div class="pay-method " id="paycard">
@@ -166,7 +203,9 @@
             </div>
             <div class="pay-method " id="pod">
                 <h4>Cash on Delivery</h4>
-                <button class="checkout-btn" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377;XYZ</button>
+                <form action="" method="post">
+                    <button class="checkout-btn" name="pay" id="pay" value="paid" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377; <?php echo $orders['amount']; ?></button>
+                </form>
             </div>
         </div>
     </div>

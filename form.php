@@ -3,7 +3,6 @@ require_once 'config.php';
 
 require_once 'session.php';
 
-
 if(isset($_POST['register-s'])){
     if($_POST['type'] != 'null'){
         $type = $_POST['type'];

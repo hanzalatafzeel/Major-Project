@@ -1,13 +1,25 @@
 <?php
-@include 'config.php';
+
 
 session_start();
 
-$sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` ";
+function get(){
+    @include 'config.php';
+    $sql = "SELECT `order_id`,`time`,`amount`,`paid`  FROM `order-list` where status = true ";
 $result = $db->query($sql);
+return $result;
+}
+
+function view($oid){
+    @include 'config.php';
+$sql = "SELECT `orders`.`qty`, `item`.`name` FROM orders INNER join item ON `orders`.`item_id` = `item`.`id` where order_id = '$oid' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0)
+    return $result;
+
+}
 $count = -1;
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,20 +27,15 @@ $count = -1;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="style.css">
     <!--Bootstrap-css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
     <!--Stylesheet-->
-    <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Owl-carousel CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-        integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-        integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="navbar.css">
+
+    <link rel="stylesheet" href="canteen_page.css">
     <!--font-icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -43,14 +50,14 @@ $count = -1;
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
     </style>
 
-    <title>Home Page</title>
+    <title>Canteen Page</title>
+
 </head>
 
 <body>
-
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand pageName" href="index.php"><span class="yellow">Can</span>teen</a>
+        <a class="navbar-brand pageName" href="index.html">Canteen</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -64,22 +71,9 @@ $count = -1;
                     <a class="nav-link" href="#footer">Contact</a>
                 </li>
                 <!-- about button -->
-                <?php if (isset($_SESSION['logged'])) { ?>
-                    <li class="nav-item">
-                        <!-- <a class="nav-link" id="signup" href="login.html" value="signup">sign Up</a> -->
-                        <a class="nav-link" href="logout.php" value="LogOut">LogOut</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="checkout.php">Cart</a>
-                    </li>
-                <?php } else { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php" value="Login">Login</a>
-                    </li>
-                <?php } ?>
+                <li class="nav-item">
+                    <a class="nav-link" id="signup" href="#signup" value="signup">sign Up</a>
+                </li>
                 <!-- login button -->
                 <li class="nav-item">
                     <a class="nav-link" href="help.html">Help</a>
@@ -88,65 +82,81 @@ $count = -1;
         </div>
     </nav>
 
-    <div class="container">
-        <div class="sidebar">
-            <h3>Categories</h3>
-            <form action="#">
-                <label for="fastfood">Meal</label>
-                <input type="checkbox" name="fastfood" id="fastfood"> <br>
-                <label for="fastfood">Fast Food</label>
-                <input type="checkbox" name="fastfood" id="fastfood"><br>
-                <label for="fastfood">Snacks</label>
-                <input type="checkbox" name="fastfood" id="fastfood"><br>
-                <label for="fastfood">Deserts</label>
-                <input type="checkbox" name="fastfood" id="fastfood"><br>
-                <label for="fastfood">Beverages</label>
-                <input type="checkbox" name="fastfood" id="fastfood">
+    <!-- itemlsit -->
+    <div class="middle">
+        <div class="item-list">
+                <?php $result = get();
+                if ($result->num_rows > 0){?>
+            <table>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Amount</th>
+                    <th>Time</th>
+                    <th>Payment status</th>
+                    <th>View Order</th>
+                    
+                </tr>
+                <?php while ($row = $result->fetch_assoc()) {?>
+                <tr>
+                    <td><?php echo $row['order_id'];?></td>
+                    <td><?php echo $row['amount'];?></td>
+                    <td><?php echo $row['time'];?></td>
+                    <?php if($row['paid']){?>
+                    <td>paid</td>
+                    <td><button  onclick="vieworder('<?php echo $row['order_id'];?>')">View</button></td>
+                    <?php }else{?>
+                        <td>Not Paid</td>
+                        <td></td>
+                        <?php } ?>
+                </tr>
+                <?php } ?>
+            </table>
+            <?php } ?>
+            
 
-            </form>
+           
         </div>
 
-        <?php if ($result->num_rows > 0) { ?>
-            <div class="main">
 
-                <?php while ($row = $result->fetch_assoc()) {
-                    $count++; ?>
-                    <div class="box">
-                        <div class="image">
-
-                            <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image']); ?>" alt="">
-                        </div>
-                        <table>
-                            <tr>
-                                <td>
-                                    <?php echo $row['name'] ?>
-                                </td>
-                                <td><button class="box-btn">Buy Now</button></td>
-                            </tr>
-                            <tr>
-                                <td> &#8377;
-                                    <?php echo $row['price']; ?>
-                                </td>
-                                <?php $id = $row['id']; ?>
-                                <td>
-                                    <form action="cart.php" method="POST">
-                                        <button type="submit" name="add" class="box-btn" value="<?php echo $row['id']; ?>">Add
-                                            to Cart</button>
-                                    </form>
-                                </td>
-
-                            </tr>
-                        </table>
-                    </div>
-                <?php } ?>
-
-
-            </div>
-        <?php } ?>
     </div>
+    <?php 
+     $result = get();
+    if ($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){
+            if($row['paid']){
+                $get = view($row['order_id']);
 
+        ?>
+        <div class="order-box" id="<?php echo $row['order_id'];?>">
+            <div class="content" id="unblurred" >
+                <button class="close-btn" onclick="closeorder('<?php echo $row['order_id'];?>')"><i class="fa fa-close"></i></button>
 
-    <!-- </div> -->
+                <h2>Order Details</h2>
+                <table id="order-table">
+                    <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        
+                    </tr>
+                <?php while($list = $get->fetch_assoc()){ ?>
+                    <tr>
+                        <td><?php echo $list['name'];?></td>
+                        <td><?php echo $list['qty'];?></td>
+                    </tr>
+                    <?php } ?>
+                </table>
+
+                <button class="order-ready" >Mark as Ready</button>
+            </div>
+        </div>
+        <?php
+        }
+    }
+    }
+    ?>
+
+       
+
 
     <!-- Footer -->
 
@@ -210,13 +220,21 @@ $count = -1;
             </div>
 
         </div>
-        <script src="cart.js"></script>
-        <?php if (isset($_SESSION['logged'])) { ?>
-            <div id="work"></div>
-        <?php } ?>
-
+        
 
     </footer>
+    <script>
+        function vieworder(id) {
+            document.getElementById(id).style.display="block";
+        }
+        function closeorder(id) {
+            document.getElementById(id).style.display="none";
+        }
+
+        
+    </script>
+
+
 </body>
 
 </html>

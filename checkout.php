@@ -1,23 +1,33 @@
-<?php 
+<?php
 @include 'config.php';
 
 session_start();
 
-if(!isset($_SESSION['id'])){
+if (!isset($_SESSION['id'])) {
     header("location: login.php");
 }
 $uid = $_SESSION['id'];
-$sql = "SELECT `order_id`,`amount` from `order-list` where s_id = '$uid'";
+$sql = "SELECT `order_id`,`amount` from `order-list` where s_id = '$uid' && status = false";
 $result = $db->query($sql);
-if($result->num_rows>0){
+if ($result->num_rows > 0) {
     $orders = $result->fetch_assoc();
-$oid = $orders['order_id'];
-$_SESSION['oid'] = $oid;
-$sql = "SELECT `item_id`,`qty`,`amount` from orders where order_id = '$oid'" ;
-$result = $db->query($sql);
+    $oid = $orders['order_id'];
+    $_SESSION['oid'] = $oid;
+    $sql = "SELECT `item_id`,`qty`,`amount` from orders where order_id = '$oid'";
+    $result = $db->query($sql);
 }
 
+if(isset($_POST['del'])){
+    $it_id = $_POST['del'];
+    $sql = "DELETE FROM `orders` WHERE item_id = '$it_id' && order_id = '$oid'";
+    $result = $db->query($sql);
+    if($result){
+        unset($_POST['del']);
+        header("location: checkout.php");
 
+    }
+
+}
 $count = -1;
 ?>
 
@@ -32,7 +42,7 @@ $count = -1;
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="checkout.css">
     <!--Bootstrap-css-->
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
     <!--Stylesheet-->
@@ -88,45 +98,67 @@ $count = -1;
     <!-- checkout -->
     <div class="check">
         <div class="check-container">
-            <?php if($result->num_rows>0){
-           while( $list = $result->fetch_assoc()){
-            $id = $list['item_id'];
-            $sql = "SELECT `name`,`price` from item where id='$id'";
-            $get = $db->query($sql);
-            $item = $get->fetch_assoc();
+            <?php if ($result->num_rows > 0) {
+                while ($list = $result->fetch_assoc()) {
+                    $id = $list['item_id'];
+                    $sql = "SELECT `name`,`price` from item where id='$id'";
+                    $get = $db->query($sql);
+                    $item = $get->fetch_assoc();
 
-            ?>
-            <div class="item">
-               
-                <div class="item-box" id="itemName"><?php echo $item['name']?></div> 
-                <div class="item-box ">
-                    <button class="cart-btn" onclick="dec('<?php echo $id?>')"><i class="fa fa-minus"  aria-hidden="true"></i></button>
-                    <input type="number"  value="<?php echo $list['qty']?>" id="<?php echo $id?>">
-                    <button class="cart-btn" onclick="inc('<?php echo $id?>')"><i class="fa fa-plus" aria-hidden="true" ></i></button></div>
-                <div class="item-box" id="itemPrice">&#8377; </span><span id="<?php echo "tot".$id;?>"><?php echo $list['amount'];?></span><span id="<?php echo "bsc".$id?>" style="display:none"><?php echo $item['price']?></div>
-                <form action="set.php" method="post" style="display:none">
-                <input type="text" name="item" value="<?php echo $id?>">    
-                <input type="number" name="qty" value="" id="<?php echo "qty".$id?>"> 
-                <input type="submit" name="set" id="<?php echo "set".$id;?>" value="<?php echo $item['price']?>" style="display:none">
-           </form  >
-            </div>
-            <?php
-           }?>
+                    ?>
+                    <div class="item">
 
-    
-            <hr>
-            <div class="checkout">
-                <h4>Bill Details</h4>
-                <p>Item Total &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&#8377;<?php echo $orders['amount']?></p>
-                <a href="payment.html" class="checkout-btn"><i class="fa fa-shopping-cart"
-                aria-hidden="true"></i>Proceed to checkout</a>
-                <!-- <button href="payment.html" class="checkout-btn"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Proceed to checkout</button> -->
-            </div>
-       <?php }else{
-        ?>
-        <div> <h1>Your cart is empty !</h1> </div>
-        <?php }?>
-            
+                        <div class="item-box" id="itemName">
+                            <?php echo $item['name'] ?>
+                        </div>
+
+                        <div class="item-box ">
+                            <button class="cart-btn" onclick="dec('<?php echo $id ?>')"><i class="fa fa-minus"
+                                    aria-hidden="true"></i></button>
+                            <input type="number" value="<?php echo $list['qty'] ?>" id="<?php echo $id ?>">
+                            <button class="cart-btn" onclick="inc('<?php echo $id ?>')"><i class="fa fa-plus"
+                                    aria-hidden="true"></i></button>
+                        </div>
+
+                        <div class="item-box" id="itemPrice">&#8377; </span><span id="<?php echo "tot" . $id; ?>">
+                                <?php echo $list['amount']; ?>
+                            </span><span id="<?php echo "bsc" . $id ?>" style="display:none">
+                                <?php echo $item['price'] ?>
+                        </div>
+                        <div class="item-box" id="deleteItem">
+                            <form action="" method="post">
+                                <button class="deletebtn cart-btn" name="del" id="del" value="<?php echo $list['item_id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+
+                        <form action="set.php" method="post" style="display:none">
+                            <input type="text" name="item" value="<?php echo $id ?>">
+                            <input type="number" name="qty" value="" id="<?php echo "qty" . $id ?>">
+                            <input type="submit" name="set" id="<?php echo "set" . $id; ?>" value="<?php echo $item['price'] ?>"
+                                style="display:none">
+                        </form>
+                    </div>
+                    <?php
+                } ?>
+
+
+                <hr>
+                <div class="checkout">
+                    <h4>Bill Details</h4>
+                    <p>Item Total &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&#8377;
+                        <?php echo $orders['amount'] ?>
+                    </p>
+                    <a href="payment.php" class="checkout-btn"><i class="fa fa-shopping-cart"
+                            aria-hidden="true"></i>Proceed to checkout</a>
+                    <!-- <button href="payment.html" class="checkout-btn"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Proceed to checkout</button> -->
+                </div>
+            <?php } else {
+                ?>
+                <div>
+                    <h1>Your cart is empty !</h1>
+                </div>
+            <?php } ?>
+
         </div>
     </div>
 
@@ -197,56 +229,54 @@ $count = -1;
 
     </footer>
     <script>
-        function inc(id){
-            let quantity= document.getElementById(id);
-            let idt = "tot"+id;
-            let bst = "bsc"+id;
-            let q = "qty"+id;
-            let set = "set"+id;
+        function inc(id) {
+            let quantity = document.getElementById(id);
+            let idt = "tot" + id;
+            let bst = "bsc" + id;
+            let q = "qty" + id;
+            let set = "set" + id;
             let amount = document.getElementById(idt);
             let basic = document.getElementById(bst);
-            let qty=Number(quantity.value);
+            let qty = Number(quantity.value);
             let amt = Number(amount.innerHTML);
             let bsc = Number(basic.innerHTML);
             qty++;
-            let tot =0;
-            if(qty>=0)
-            {
-                tot = bsc*qty;
+            let tot = 0;
+            if (qty >= 0) {
+                tot = bsc * qty;
             }
             quantity.value = String(qty);
             amount.innerHTML = String(tot);
             basic.innerHTML = String(bsc);
-            document.getElementById(q).value = String(qty);  
+            document.getElementById(q).value = String(qty);
             document.getElementById(set).click();
 
         }
 
-        function dec(id){     
-            let quantity= document.getElementById(id);
-            let idt = "tot"+id;
-            let bst = "bsc"+id;
-            let q = "qty"+id;
-            let set = "set"+id;
+        function dec(id) {
+            let quantity = document.getElementById(id);
+            let idt = "tot" + id;
+            let bst = "bsc" + id;
+            let q = "qty" + id;
+            let set = "set" + id;
             let amount = document.getElementById(idt);
             let basic = document.getElementById(bst);
-            let qty=Number(quantity.value);
+            let qty = Number(quantity.value);
             let amt = Number(amount.innerHTML);
             let bsc = Number(basic.innerHTML);
             let tot = 0;
             qty--;
-            if(qty>=0)
-            {
-                tot = bsc*qty;
+            if (qty >= 0) {
+                tot = bsc * qty;
             }
-            else{
+            else {
                 qty = 0;
             }
-            
-            quantity.value = String(qty);   
+
+            quantity.value = String(qty);
             amount.innerHTML = String(tot);
-            basic.innerHTML = String(bsc);  
-            document.getElementById(q).value = String(qty);    
+            basic.innerHTML = String(bsc);
+            document.getElementById(q).value = String(qty);
             document.getElementById(set).click();
 
         }

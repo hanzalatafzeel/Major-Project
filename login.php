@@ -156,7 +156,7 @@ if(isset($_SESSION['regerr'])){
                 </form>
             </div>
             <div class="form-container sign-in-container">
-                <form action="form.php" method="post" enctype="multipart/form-data">
+                <form action="form.php" method="post" >
                     <h1>Sign In</h1>
                     <div class="social-container">
                         <a href="#" class="food_icon" onClick="return false;"><i class="fas fa-hamburger"></i></a>

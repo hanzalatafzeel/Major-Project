@@ -118,7 +118,8 @@ $count = -1;
                 <hr>
                 <div class="total-container">
                     <div class="subtotal">
-                        Subtotal <span class="left">
+                        Subtotal 
+                        <span class="left">
                             <?php echo $orders['amount'] ?>
                         </span>
 

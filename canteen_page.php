@@ -3,7 +3,7 @@
 
 session_start();
 
-$sql = "SELECT `id`,`name`,`price`  FROM `item` ";
+$sql = "SELECT `id`,`name`,`price`,`c_id`  FROM `item` ";
 $result = $db->query($sql);
 $count = -1;
 ?>
@@ -65,6 +65,10 @@ $count = -1;
                 <li class="nav-item">
                     <a class="nav-link" href="help.html">Help</a>
                 </li>
+                <!-- Order -->
+                <li class="nav-item">
+                    <a class="nav-link" href="canteen_order.php">Order</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -77,23 +81,55 @@ $count = -1;
                     <th>Item Id</th>
                     <th>Item Name</th>
                     <th>Item Price</th>
+                    <th>Update</th>
                     <!-- <th>Item Number</th> -->
                 </tr>
                 <?php
                 if ($result->num_rows > 0)
                     while ($row = $result->fetch_assoc()) {
-                        echo '<tr>';
-                        echo '<td>' . $row['id'] . '</td>';
-                        echo '<td>' . $row['name'] . '</td>';
-                        echo '<td>' . $row['price'] . '</td>';
-                        echo '</tr>';
-                    }
+                        ?>
+                        <tr>
+                        <td><?php echo $row['id'] ?></td>
+                        <td><?php echo $row['name'] ?></td>
+                        <td><?php echo $row['price'] ?></td>
+                        <td> <button onclick="updateForm('<?php echo $row['id'] ?>')">Update</button> </td>
+                    </tr>
+                    <div class="form-popup " id="<?php echo $row['id'];?>">
+            <form action="demo.php" class="itemform" method="post" enctype="multipart/form-data">
+                <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm()"></i></button>
+                <input type="text" value="<?php echo $row['id'] ?>" readonly>
+                <br>
+                <input type="text" value="<?php echo $row['name'] ?>" name="name" readonly>
+                <input type="text" value="<?php echo $row['price'] ?>" name="price">
+                    <input type="file" name="imgf">
+                <input type="text" value="<?php echo $row['c_id'] ?>" name="c_id">
 
+                <button class="qsubmit" name="update">Update</button>
+            </form>
+        </div> 
+                <?php 
+                }
                 ?>
             </table>
         </div>
 
         <!-- add item  -->
+        <div class="form-popup " id="<?php echo $row['id'] ?>">
+            <form action="demo.php" class="itemform" method="post" enctype="multipart/form-data">
+                <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm()"></i></button>
+                <input type="text" placeholder="Item Id" required name="id">
+                <br>
+                <input type="text" placeholder="Item Name" name="name">
+                <input type="text" placeholder="Item Price" name="price">
+                <input type="file" name="imgf">
+                <input type="text" placeholder="Canteen Id" name="c_id">
+                
+                <button class="qsubmit" name="submit">Submit</button>
+            </form>
+        </div>
+        
+        <!-- update form  -->
+        
         <button class="open-button" onclick="openForm()"><i class="fa fa-plus" aria-hidden="true"></i></button>
         <div class="form-popup " id="myForm">
             <form action="demo.php" class="itemform" method="post" enctype="multipart/form-data">
@@ -102,9 +138,6 @@ $count = -1;
                 <br>
                 <input type="text" placeholder="Item Name" name="name">
                 <input type="text" placeholder="Item Price" name="price">
-                <!-- <input type="file" name="" id=""> -->
-                <!-- <input #imageInput accept="image/*" (change)="processFile(imageInput)" name="imgf" type="file"
-                    id="upload-photo" /> -->
                     <input type="file" name="imgf">
                 <input type="text" placeholder="Canteen Id" name="c_id">
 
@@ -185,6 +218,13 @@ $count = -1;
 
         function closeForm() {
             document.getElementById("myForm").style.display = "none";
+        }
+
+        function upadateForm(id){
+            document.getElementById(id).style.display = "block";
+        }
+        function closeForm(id) {
+            document.getElementById(id).style.display = "none";
         }
     </script>
 

@@ -78,6 +78,11 @@ $count = -1;
                 <li class="nav-item">
                     <a class="nav-link" href="help.html">Help</a>
                 </li>
+
+                <!-- login button -->
+                <li class="nav-item">
+                    <a class="nav-link" href="canteen_page.php">Items</a>
+                </li>
             </ul>
         </div>
     </nav>

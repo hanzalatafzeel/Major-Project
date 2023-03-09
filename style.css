@@ -44,8 +44,10 @@ body{
 .box-btn{
     background-color: #f43127;
     color: #fff ;
-    width: 80%;
+    width: 200px;
     border: none;
+    margin-top: 2%;
+    margin-bottom: 2%;
     border-radius: 6px;
 }
 
@@ -73,5 +75,19 @@ body{
     border: 1px solid rgb(36, 32, 32);
     background-color: yellow ;
 } */
-
-
+.namePrice{
+    display: grid;
+    grid-template-rows: auto auto;
+    padding: 2% 3% 2% 3%;
+}
+.name{
+    padding-left: 6%;
+}
+.price{
+    margin: 0 auto 0 auto;
+}
+.right{
+    color: crimson;
+    float: right;
+    padding-right: 7%;
+}

@@ -116,7 +116,26 @@ $count = -1;
 
                             <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image']); ?>" alt="">
                         </div>
-                        <table>
+
+                        <div class="namePrice">
+                            <div class="name">
+                                <?php echo $row['name'] ?>
+                                <span class="right">
+                                    &#8377;
+                                    <?php echo $row['price']; ?>
+                                </span>
+                                
+                            </div>
+                            <div class="price">
+                            <button class="box-btn">Buy Now</button>
+                            <form action="cart.php" method="POST">
+                                        <button type="submit" name="add" class="box-btn" value="<?php echo $row['id']; ?>">Add
+                                            to Cart</button>
+                                    </form>
+
+                            </div>
+                        </div>
+                        <!-- <table>
                             <tr>
                                 <td>
                                     <?php echo $row['name'] ?>
@@ -136,7 +155,7 @@ $count = -1;
                                 </td>
 
                             </tr>
-                        </table>
+                        </table> -->
                     </div>
                 <?php } ?>
 

@@ -1,5 +1,5 @@
 <?php 
-function generateRandomString($length = 6) {
+function generateRandomString($length) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
@@ -8,7 +8,4 @@ function generateRandomString($length = 6) {
     }
     return $randomString;
 }
-
-
-
 ?>

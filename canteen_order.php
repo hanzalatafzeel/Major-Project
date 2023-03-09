@@ -229,11 +229,17 @@ $count = -1;
 
     </footer>
     <script>
+         
+        
         function vieworder(id) {
             document.getElementById(id).style.display="block";
+
+            clearTimeout(myTimeout);
+
         }
         function closeorder(id) {
             document.getElementById(id).style.display="none";
+            refresh();
         }
 
         

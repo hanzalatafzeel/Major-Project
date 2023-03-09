@@ -64,7 +64,7 @@ if(isset($_POST['login-s'])){
             $_SESSION['contact'] = $row['contact'];
             $_SESSION['id'] = $row['id'];
             if($who == 'student'){
-                header('location: ./Major-Project/');
+                header('location: ./');
             }
             else if($who == 'canteen'){
                 header('location: canteen_page.php');

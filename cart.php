@@ -42,7 +42,7 @@
             
             }
             else{
-                $id = generateRandomString();
+                $id = generateRandomString(6);
                 $add = "INSERT INTO `order-list` (`order_id`,`s_id`,`amount`,`status`) VALUE ('$id','$s_id','$price',false)";
                 $load = "INSERT INTO `orders` (`order_id`,`item_id`,`qty`,`amount`) VALUE ('$id','$item',1,'$price')";
                 $add = $db->query($add);

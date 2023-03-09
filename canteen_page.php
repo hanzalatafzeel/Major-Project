@@ -1,6 +1,8 @@
 <?php
 @include 'config.php';
 
+@include 'rand.php';
+
 session_start();
 
 $sql = "SELECT `id`,`name`,`price`,`c_id`  FROM `item` ";
@@ -92,19 +94,19 @@ $count = -1;
                         <td><?php echo $row['id'] ?></td>
                         <td><?php echo $row['name'] ?></td>
                         <td><?php echo $row['price'] ?></td>
-                        <td> <button onclick="updateForm('<?php echo $row['id'] ?>')">Update</button> </td>
+                        <td> <button onclick="openForm('<?php echo $row['id'] ?>')">Update</button> </td>
                     </tr>
                     <div class="form-popup " id="<?php echo $row['id'];?>">
-            <form action="demo.php" class="itemform" method="post" enctype="multipart/form-data">
-                <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm()"></i></button>
-                <input type="text" value="<?php echo $row['id'] ?>" readonly>
+                        <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm('<?php echo $row['id'] ?>')"></i></button>
+            <form action="update.php" class="itemform" method="post" enctype="multipart/form-data">
+                <input type="text" value="<?php echo $row['id'] ?>" name="id" readonly>
                 <br>
                 <input type="text" value="<?php echo $row['name'] ?>" name="name" readonly>
                 <input type="text" value="<?php echo $row['price'] ?>" name="price">
                     <input type="file" name="imgf">
                 <input type="text" value="<?php echo $row['c_id'] ?>" name="c_id">
 
-                <button class="qsubmit" name="update">Update</button>
+                <button class="qsubmit" name="update" value = "item" >Update</button>
             </form>
         </div> 
                 <?php 
@@ -114,10 +116,11 @@ $count = -1;
         </div>
 
         <!-- add item  -->
-        <div class="form-popup " id="<?php echo $row['id'] ?>">
+        <button class="open-button" onclick="openForm('myForm')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        <div class="form-popup " id="myForm">
+            <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm('myForm')"></i></button>
             <form action="demo.php" class="itemform" method="post" enctype="multipart/form-data">
-                <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm()"></i></button>
-                <input type="text" placeholder="Item Id" required name="id">
+                <input type="text" placeholder="Item Id" name="id" value="<?php echo generateRandomString(8); ?>" readonly>
                 <br>
                 <input type="text" placeholder="Item Name" name="name">
                 <input type="text" placeholder="Item Price" name="price">
@@ -130,20 +133,7 @@ $count = -1;
         
         <!-- update form  -->
         
-        <button class="open-button" onclick="openForm()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-        <div class="form-popup " id="myForm">
-            <form action="demo.php" class="itemform" method="post" enctype="multipart/form-data">
-                <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm()"></i></button>
-                <input type="text" placeholder="Item Id" required name="id">
-                <br>
-                <input type="text" placeholder="Item Name" name="name">
-                <input type="text" placeholder="Item Price" name="price">
-                    <input type="file" name="imgf">
-                <input type="text" placeholder="Canteen Id" name="c_id">
-
-                <button class="qsubmit" name="submit">Submit</button>
-            </form>
-        </div>
+        
 
     </div>
 
@@ -212,19 +202,15 @@ $count = -1;
 
     </footer>
     <script>
-        function openForm() {
-            document.getElementById("myForm").style.display = "block";
-        }
+       
 
-        function closeForm() {
-            document.getElementById("myForm").style.display = "none";
-        }
 
-        function upadateForm(id){
+        function openForm(id){
             document.getElementById(id).style.display = "block";
         }
         function closeForm(id) {
             document.getElementById(id).style.display = "none";
+            // location.reload();
         }
     </script>
 

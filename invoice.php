@@ -7,7 +7,7 @@ if (!isset($_SESSION['id'])) {
     header("location: login.php");
 }
 $oid = $_SESSION['oid'];
-$sql = "SELECT `amount` from `order-list` where order_id = '$oid'";
+$sql = "SELECT `amount` ,`date`,`time`from `order-list` where order_id = '$oid'";
 $result = $db->query($sql);
 $fetch = "";
 if ($result->num_rows > 0) {
@@ -86,8 +86,8 @@ $count = -1;
             <p>Central Canteen</p>
             <div class="time-date">
 
-                <div class="date" id="dt"></div>
-                <div class="time" id="tm"></div>
+                <div class="date" id="dt"><?php echo $orders['date']?></div>
+                <div class="time" id="tm"><?php echo $orders['time']?></div>
             </div>
             <hr>
             <div class="description">
@@ -131,7 +131,7 @@ $count = -1;
                         </span></div>
                 </div>
                 <span id="orderid" style="display:none">
-                    <?php echo $oid ?>
+                    <?php echo $oid; ?>
                 </span>
             <?php } else {
                 ?>
@@ -150,8 +150,8 @@ $count = -1;
     <script>
         const d = new Date();
         const t = new Date();
-        var get = document.getElementById('dt').innerHTML = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
-        document.getElementById('tm').innerHTML = t.getHours() + ":" + t.getMinutes() + ":" + t.getSeconds();
+        // var get = document.getElementById('dt').innerHTML = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+        // document.getElementById('tm').innerHTML = t.getHours() + ":" + t.getMinutes() + ":" + t.getSeconds();
 
         function printDiv() {
             // Get the div element by its ID

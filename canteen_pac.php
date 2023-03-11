@@ -8,6 +8,44 @@ session_start();
 $sql = "SELECT `id`,`name`,`price`,`c_id`  FROM `item` ";
 $result = $db->query($sql);
 $count = -1;
+$id = $get['name'] = $get['amount'] = $get['id'] = "";
+$ro = "";
+if(isset($_POST['pay'])){
+    if($_POST['pay'] !== $id || $_POST['pay'] === "" ){
+        $id = $_POST['id'];
+       $sql =  "SELECT `student`.`name`,`order-list`.`amount`,`order-list`.`order_id` as `id` FROM `order-list` INNER JOIN `student` ON `student`.`id` = `order-list`.`s_id` WHERE s_id = '$id' && `order-list`.`pay_id` IS NULL ORDER BY `order-list`.`amount` asc LIMIT 1";
+       $result = $db->query($sql);
+       if($result->num_rows == 1){
+        $get = $result->fetch_assoc();
+        $ro = "readonly";
+        $get['amount']*=1.05;
+        unset($_POST['pay']);
+       }
+    
+    }
+    
+}
+
+if(isset($_POST['oid']) && $_POST['oid'] !== ""){
+    $oid = $_POST['oid'];
+    $id = generateRandomString(10);
+        $sql = "UPDATE `order-list` SET pay_id = '$id' where order_id = '$oid' ";
+        $set = $db->query($sql);
+        if($set){
+            header("location: index.php");
+            $date = date("Y-m-d");
+            $time = date("h:m");
+            $amount = $_POST['amt'];
+            $sql = "INSERT INTO `payment`(`id`, `mode`, `amount`, `date`, `time`) VALUES ('$id','PAC','$amount','$date','$time')";
+            $set = $db->query($sql);
+            if($set){
+                $sql = "INSERT `order-stack` (`order_id`) VALUES ('$oid')";
+                $set = $db->query($sql);
+                header("location: canteen_pac.php");
+            }
+        }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +77,7 @@ $count = -1;
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
     </style>
 
-    <title>Canteen Page</title>
+    <title>Canteen PAC</title>
 
 </head>
 
@@ -85,15 +123,21 @@ $count = -1;
         <div class="form-popup-pac " id="myForm">
             
             <form action="" class="itemform" method="post" enctype="plain/text">
-                <input type="text" placeholder="Student Id" name="id" >
+                <input type="text" placeholder="Student Id" name="id" value="<?php echo $id;?>" onchange="check()" ><br>
+                <input type="password" placeholder="Order Id" id="oid" name="oid" value="<?php echo $get['id'];?>" <?php echo $ro ?>>
                 <br>
-              
-           
+                <input type="text" placeholder="name" value="<?php echo $get['name'];?>" <?php echo $ro ?>>
                 
-                <input type="text" placeholder="Canteen Id" name="c_id">
+                <input type="number" placeholder="Amount To Pay" name="amt" id="amt"value="<?php echo $get['amount'];?>" <?php echo $ro ?>>
                 
-                <button class="qsubmit" name="submit">Submit</button>
+                <button class="qsubmit" name="pay" id="pay" value="<?php echo $id;?>" >Make Paid</button>
             </form>
+
+            <script>
+                function check(){
+                    document.getElementById('pay').click();
+                }
+                </script>
         </div>
         
         <!-- update form  -->
@@ -166,18 +210,7 @@ $count = -1;
         </div>
 
     </footer>
-    <script>
-       
-
-
-        function openForm(id){
-            document.getElementById(id).style.display = "block";
-        }
-        function closeForm(id) {
-            document.getElementById(id).style.display = "none";
-            // location.reload();
-        }
-    </script>
+    
 
 
 </body>

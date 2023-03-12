@@ -7,7 +7,7 @@ if (!isset($_SESSION['id'])) {
     header("location: login.php");
 }
 $oid = $_SESSION['oid'];
-$sql = "SELECT `amount` from `order-list` where order_id = '$oid'";
+$sql = "SELECT `amount` ,`date`,`time`,`paid`from `order-list` where order_id = '$oid'";
 $result = $db->query($sql);
 $fetch = "";
 if ($result->num_rows > 0) {
@@ -56,6 +56,16 @@ $count = -1;
             margin-right: 2%;
         }
 
+        .notpaid:after{
+            content: "Not Paid";
+            color: #f06960;
+            float:left;
+            margin-left:3%;
+            font-weight:bolder;
+            font-family: "Gill Sans", sans-serif;
+            font-feature-settings: "smcp", "zero";
+        }
+
 
         .description,
         .item-container {
@@ -76,6 +86,8 @@ $count = -1;
             margin-right: 18%;
             float: right;
         }
+
+        
     </style>
 </head>
 
@@ -84,33 +96,41 @@ $count = -1;
         <div class="receipt" id="myDiv">
             <h1>Jamia Millia Islamia </h1>
             <p>Central Canteen</p>
+            <?php if($orders['paid'])
+                    $cls = "paid";
+                    else
+                    $cls = "notpaid";
+            
+            ?>
+                <div class="<?php echo $cls;?>"></div>
             <div class="time-date">
-
-                <div class="date" id="dt"></div>
-                <div class="time" id="tm"></div>
+                
+                <div class="date" id="dt"><?php echo $orders['date']?></div>
+                <div class="time" id="tm"><?php echo $orders['time']?></div>
             </div>
             <hr>
-            <div class="description">
-                <div class="qty">Qty</div>
-                <div class="item">Item</div>
-                <div class="itemtotal">Amount</div>
-            </div>
-            <hr>
-            <?php if ($fetch->num_rows > 0) {
-                while ($list = $fetch->fetch_assoc()) {
+            <!-- <div class=" "> -->
+                <div class="description">
+                    <div class="qty">Qty</div>
+                    <div class="item">Item</div>
+                    <div class="itemtotal">Amount</div>
+                </div>
+                <hr>
+                <?php if ($fetch->num_rows > 0) {
+                    while ($list = $fetch->fetch_assoc()) {
+                        
+                        
+                        ?>
 
-
-                    ?>
-
-                    <div class="item-container">
-                        <div class="qty">
-                            <?php echo $list['qty'] ?>
-                        </div>
-                        <div class="item">
-                            <?php echo $list['name'] ?>
-                        </div>
-                        <div class="itemtotal">
-                            <?php echo $list['amt']; ?>
+<div class="item-container">
+    <div class="qty">
+        <?php echo $list['qty'] ?>
+    </div>
+    <div class="item">
+        <?php echo $list['name'] ?>
+    </div>
+    <div class="itemtotal">
+        <?php echo $list['amt']; ?>
                         </div>
                     </div>
                     <?php
@@ -122,16 +142,17 @@ $count = -1;
                         <span class="left">
                             <?php echo $orders['amount'] ?>
                         </span>
-
+                        
                     </div>
                     <div class="tax">Tax <span class="left">5%</span></div>
-
+                    
                     <div class="total">Total <span class="left">
-                            <?php echo $orders['amount'] + (0.05 * $orders['amount']) ?>
-                        </span></div>
+                        <?php echo $orders['amount'] + (0.05 * $orders['amount']) ?>
+                    </span></div>
                 </div>
+            <!-- </diV> -->
                 <span id="orderid" style="display:none">
-                    <?php echo $oid ?>
+                    <?php echo $oid; ?>
                 </span>
             <?php } else {
                 ?>
@@ -150,8 +171,8 @@ $count = -1;
     <script>
         const d = new Date();
         const t = new Date();
-        var get = document.getElementById('dt').innerHTML = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
-        document.getElementById('tm').innerHTML = t.getHours() + ":" + t.getMinutes() + ":" + t.getSeconds();
+        // var get = document.getElementById('dt').innerHTML = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+        // document.getElementById('tm').innerHTML = t.getHours() + ":" + t.getMinutes() + ":" + t.getSeconds();
 
         function printDiv() {
             // Get the div element by its ID

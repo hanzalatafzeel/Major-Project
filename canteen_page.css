@@ -68,6 +68,22 @@ table {
     left: 0;
     z-index: 9;
   }
+
+  .form-popup-pac {
+    display: block;
+  
+    margin: 7% 0 5% 0;
+    
+  }
+
+  .middle .form-popup {
+    display: none;
+    position: relative;
+    width: 100%;
+    top: 25%;
+    left: 0;
+    z-index: 9;
+  }
  
 
 /* add-item section / */
@@ -152,4 +168,9 @@ text-align: center;
   color: #000000;
   background-color: #fff;
 }
+/* for canteen page */
+.update{
+  visibility: hidden;
+}
+
 

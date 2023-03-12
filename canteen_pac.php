@@ -1,24 +1,51 @@
 <?php
+@include 'config.php';
 
+@include 'rand.php';
 
 session_start();
 
-function get(){
-    @include 'config.php';
-    $sql = "SELECT `order-list`.`order_id`,`order-list`.`time`,`order-list`.`amount` FROM `order-list` INNER JOIN `order-stack` ON `order-list`.`order_id` = `order-stack`.`order_id` order by `order-stack`.`log` desc";
+$sql = "SELECT `id`,`name`,`price`,`c_id`  FROM `item` ";
 $result = $db->query($sql);
-return $result;
-}
-
-function view($oid){
-    @include 'config.php';
-$sql = "SELECT `orders`.`qty`, `item`.`name` FROM orders INNER join item ON `orders`.`item_id` = `item`.`id` where order_id = '$oid'";
-$result = $db->query($sql);
-if ($result->num_rows > 0)
-    return $result;
-
-}
 $count = -1;
+$id = $get['name'] = $get['amount'] = $get['id'] = "";
+$ro = "";
+if(isset($_POST['pay'])){
+    if($_POST['pay'] !== $id || $_POST['pay'] === "" ){
+        $id = $_POST['id'];
+       $sql =  "SELECT `student`.`name`,`order-list`.`amount`,`order-list`.`order_id` as `id` FROM `order-list` INNER JOIN `student` ON `student`.`id` = `order-list`.`s_id` WHERE s_id = '$id' && `order-list`.`pay_id` IS NULL ORDER BY `order-list`.`amount` asc LIMIT 1";
+       $result = $db->query($sql);
+       if($result->num_rows == 1){
+        $get = $result->fetch_assoc();
+        $ro = "readonly";
+        $get['amount']*=1.05;
+        unset($_POST['pay']);
+       }
+    
+    }
+    
+}
+
+if(isset($_POST['oid']) && $_POST['oid'] !== ""){
+    $oid = $_POST['oid'];
+    $id = generateRandomString(10);
+        $sql = "UPDATE `order-list` SET pay_id = '$id' where order_id = '$oid' ";
+        $set = $db->query($sql);
+        if($set){
+            header("location: index.php");
+            $date = date("Y-m-d");
+            $time = date("h:m");
+            $amount = $_POST['amt'];
+            $sql = "INSERT INTO `payment`(`id`, `mode`, `amount`, `date`, `time`) VALUES ('$id','PAC','$amount','$date','$time')";
+            $set = $db->query($sql);
+            if($set){
+                $sql = "INSERT `order-stack` (`order_id`) VALUES ('$oid')";
+                $set = $db->query($sql);
+                header("location: canteen_pac.php");
+            }
+        }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +77,7 @@ $count = -1;
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
     </style>
 
-    <title>Canteen Page</title>
+    <title>Canteen PAC</title>
 
 </head>
 
@@ -78,90 +105,46 @@ $count = -1;
                 <li class="nav-item">
                     <a class="nav-link" href="help.html">Help</a>
                 </li>
-
-                <!-- login button -->
+                <!-- Order -->
                 <li class="nav-item">
-                    <a class="nav-link" href="canteen_page.php">Items</a>
+                    <a class="nav-link" href="canteen_order.php">Order</a>
                 </li>
             </ul>
         </div>
     </nav>
 
     <!-- itemlsit -->
-    <div class="middle">
-        <div class="item-list">
-                <?php $result = get();
-                if ($result->num_rows > 0 && false){?>
-            <table>
-                <tr>
-                    <th>Order Id</th>
-                    <th>Amount</th>
-                    <th>Time</th>
-                   
-                    <th>View Order</th>
-                    
-                </tr>
-                <?php while ($row = $result->fetch_assoc()) {?>
-                <tr>
-                    <td><?php echo $row['order_id'];?></td>
-                    <td><?php echo $row['amount'];?></td>
-                    <td><?php echo $row['time'];?></td>
-                   
-                    
-                    <td><button  onclick="vieworder('<?php echo $row['order_id'];?>')">View</button></td>
-                    
-                </tr>
-                <?php } ?>
-            </table>
-            <?php } else{?>
+    <div class="pac">
+       
+       
 
-            <h4>No Order &#9785;</h4>
-            <?php }?>
-           
+        <!-- add item  -->
+        
+        <div class="form-popup-pac " id="myForm">
+            
+            <form action="" class="itemform" method="post" enctype="plain/text">
+                <input type="text" placeholder="Student Id" name="id" value="<?php echo $id;?>" onchange="check()" ><br>
+                <input type="password" placeholder="Order Id" id="oid" name="oid" value="<?php echo $get['id'];?>" <?php echo $ro ?>>
+                <br>
+                <input type="text" placeholder="name" value="<?php echo $get['name'];?>" <?php echo $ro ?>>
+                
+                <input type="number" placeholder="Amount To Pay" name="amt" id="amt"value="<?php echo $get['amount'];?>" <?php echo $ro ?>>
+                
+                <button class="qsubmit" name="pay" id="pay" value="<?php echo $id;?>" >Make Paid</button>
+            </form>
+
+            <script>
+                function check(){
+                    document.getElementById('pay').click();
+                }
+                </script>
         </div>
-
+        
+        <!-- update form  -->
+        
+        
 
     </div>
-    <?php 
-     $result = get();
-    if ($result->num_rows > 0){
-        while($row = $result->fetch_assoc()){
-           
-                $get = view($row['order_id']);
-
-        ?>
-        <div class="order-box" id="<?php echo $row['order_id'];?>">
-            <div class="content" id="unblurred" >
-                <button class="close-btn" onclick="closeorder('<?php echo $row['order_id'];?>')"><i class="fa fa-close"></i></button>
-
-                <h2>Order Details</h2>
-                <table id="order-table">
-                    <tr>
-                        <th>Item</th>
-                        <th>Qty</th>
-                        
-                    </tr>
-                <?php while($list = $get->fetch_assoc()){ ?>
-                    <tr>
-                        <td><?php echo $list['name'];?></td>
-                        <td><?php echo $list['qty'];?></td>
-                    </tr>
-                    <?php } ?>
-                </table>
-                    <form action="" method="post">
-
-                        <button class="order-ready" name="mrk">Mark as Ready</button>
-                    </form>
-            </div>
-        </div>
-        <?php
-        }
-    }
-    
-    ?>
-
-<button class="open-button" onclick="refresh()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-
 
     <!-- Footer -->
 
@@ -225,27 +208,9 @@ $count = -1;
             </div>
 
         </div>
-        
 
     </footer>
-    <script>
-         
-        function refresh(){
-            location.reload();
-        }
-        function vieworder(id) {
-            document.getElementById(id).style.display="block";
-
-            clearTimeout(myTimeout);
-
-        }
-        function closeorder(id) {
-            document.getElementById(id).style.display="none";
-            refresh();
-        }
-
-        
-    </script>
+    
 
 
 </body>

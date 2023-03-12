@@ -20,8 +20,10 @@ if ($result->num_rows > 0) {
 }
 
 if(isset($_POST['pay'])){
-
-    $sql = "UPDATE `order-list` SET `status`= true WHERE order_id = '$oid'";
+    date_default_timezone_set('Asia/Kolkata');
+$date = date("Y-m-d");
+$time = date("h:i");
+    $sql = "UPDATE `order-list` SET `time` = '$time', `date` = '$date',`status`= true WHERE order_id = '$oid'";
     $result = $db->query($sql);
     if($result){
       

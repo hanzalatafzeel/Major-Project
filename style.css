@@ -24,9 +24,9 @@ body{
 
 }
 .image img{
-    height: 251px;
+    /* height: 251px; */
     /* border-radius: 10px; */
-
+    aspect-ratio: 3/2;
     width: 242px;
 
 }
@@ -44,7 +44,7 @@ body{
 .box-btn{
     background-color: #f43127;
     color: #fff ;
-    width: 200px;
+    width: 12.5rem;
     border: none;
     margin-top: 2%;
     margin-bottom: 2%;
@@ -90,4 +90,13 @@ body{
     color: crimson;
     float: right;
     padding-right: 7%;
+}
+
+@media (max-width:786px){
+    .main{
+        grid-template-columns: auto auto ;
+    }
+    .box-btn{
+        width: 8.5rem;
+    }
 }

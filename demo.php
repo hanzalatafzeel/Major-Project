@@ -24,7 +24,7 @@ $cid = $_POST['c_id'];
     $sqli = "INSERT INTO `item` (`id`, `name`, `price`,`image`, `c_id` ) VALUES ('$id','$name','$price','" . $imgf . "','$cid')";
     $result = mysqli_query($db, $sqli);
     if ($result) {
-      header("location:index.php");
+      header("location:canteen_page.php");
     } else {
       header("location:simple.html");
     }

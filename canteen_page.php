@@ -1,12 +1,24 @@
 <?php
 @include 'config.php';
-
 @include 'rand.php';
 
 session_start();
 
-$sql = "SELECT `id`,`name`,`price`,`c_id`  FROM `item` ";
-$result = $db->query($sql);
+function get(){
+    @include 'config.php';
+    $sql = "SELECT `id`,`name`,`price`,`c_id`  FROM `item` ";
+    $result = $db->query($sql);
+    return $result;
+}
+
+if(isset($_POST['del'])){
+    $iid = $_POST['del'];
+    $sql = "DELETE FROM `item` where id = '$iid'";
+    $del = $db->query($sql);
+    if($del){
+        header("location: canteen_page.php");
+    }
+}
 $count = -1;
 ?>
 <!DOCTYPE html>
@@ -84,9 +96,11 @@ $count = -1;
                     <th>Item Name</th>
                     <th>Item Price</th>
                     <th>Update</th>
+                    <th>Delete</th>
                     <!-- <th>Item Number</th> -->
                 </tr>
                 <?php
+                $result = get();
                 if ($result->num_rows > 0)
                     while ($row = $result->fetch_assoc()) {
                         ?>
@@ -94,26 +108,45 @@ $count = -1;
                         <td><?php echo $row['id'] ?></td>
                         <td><?php echo $row['name'] ?></td>
                         <td><?php echo $row['price'] ?></td>
-                        <td> <button onclick="openForm('<?php echo $row['id'] ?>')">Update</button> </td>
+                        <td> <button class="updelete  fa fa-pencil" onclick="openForm('<?php echo $row['id'] ?>')"></button> </td>
+                        <td>
+                            <form action="" method="post">
+                            <button class="updelete fa fa-trash" name="del" value="<?php echo $row['id'] ?>"></button>
+                    </form>
+                        
+                        </td>
                     </tr>
-                    <div class="form-popup " id="<?php echo $row['id'];?>">
-                        <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm('<?php echo $row['id'] ?>')"></i></button>
-            <form action="update.php" class="itemform" method="post" enctype="multipart/form-data">
-                <input type="text" value="<?php echo $row['id'] ?>" name="id" readonly>
-                <br>
-                <input type="text" value="<?php echo $row['name'] ?>" name="name" readonly>
-                <input type="text" value="<?php echo $row['price'] ?>" name="price">
-                    <input type="file" name="imgf">
-                <input type="text" value="<?php echo $row['c_id'] ?>" name="c_id">
 
-                <button class="qsubmit" name="update" value = "item" >Update</button>
-            </form>
-        </div> 
+            
                 <?php 
                 }
                 ?>
             </table>
         </div>
+
+        <!-- update form  -->
+        
+    <?php
+    $result = get();
+    if ($result->num_rows > 0)
+        while ($row = $result->fetch_assoc()) {
+            ?>
+        
+
+        <div class="form-popup " id="<?php echo $row['id'];?>">
+                        <button class="cancel"><i class="fa fa-times" aria-hidden="true" onclick="closeForm('<?php echo $row['id'] ?>')"></i></button>
+            <form action="update.php" class="itemform" method="post" enctype="multipart/form-data">
+                <input type="text" value="<?php echo $row['id'] ?>" name="id" readonly>
+                <br>
+                <input type="text" value="<?php echo $row['name'] ?>" name="name" readonly>
+                <input type="text" value="<?php echo $row['price'] ?>" name="price" placeholder="Price">
+
+                <input type="text" value="<?php echo $row['c_id'] ?>" name="c_id" readonly>
+
+                <button class="qsubmit" name="update" value = "item" >Update</button>
+            </form>
+        </div> 
+        <?php } ?>
 
         <!-- add item  -->
         <button class="open-button" onclick="openForm('myForm')"><i class="fa fa-plus" aria-hidden="true"></i></button>
@@ -131,7 +164,6 @@ $count = -1;
             </form>
         </div>
         
-        <!-- update form  -->
         
         
 

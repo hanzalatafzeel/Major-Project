@@ -17,19 +17,14 @@ $count = -1;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="navbar.css">
+
     <!--Bootstrap-css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
     <!--Stylesheet-->
-    <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Owl-carousel CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-        integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-        integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
-    <!--font-icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -42,6 +37,9 @@ $count = -1;
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
     </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sono&display=swap');
+    </style>
 
     <title>Home Page</title>
 </head>
@@ -50,7 +48,9 @@ $count = -1;
 
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand pageName" href="index.php"><span class="yellow">Can</span>teen</a>
+        <a class="navbar-brand pageName" href="index.php"><span class="yellow">C</span>ampus<span
+                class="yellow">C</span>rave </a>
+        <!-- <img src="img/campuscrave.png" alt="" width="80"> -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -70,27 +70,46 @@ $count = -1;
                         <a class="nav-link" href="logout.php" value="LogOut">LogOut</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
+                        <a class="nav-link" href="help.html">Help</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="checkout.php">Cart</a>
+                        <a class="nav-link" href="profile.php"><i class="fa fa-user" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="checkout.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                     </li>
                 <?php } else { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="login.php" value="Login">Login</a>
                     </li>
                 <?php } ?>
-                <!-- login button -->
-                <li class="nav-item">
-                    <a class="nav-link" href="help.html">Help</a>
-                </li>
             </ul>
+            <!-- login button -->
         </div>
     </nav>
 
-    <div class="container">
+
+    <div class="logo">
+        <img src="img/campuscrave.png" alt="" width="450">
+
+        <form action="#">
+            <div class="search">
+                <input type="search" name="" id="" class="searchTerm" placeholder="What are you looking for?">
+                <button class="fa fa-search searchButton"></button>
+            </div>
+        </form>
+    </div>
+    <?php
+    // Include Hero-carousel
+    include('_hero-carousel.php');
+    ?>
+
+
+
+    <div class="containers">
         <div class="sidebar">
             <h3>Categories</h3>
+            <hr style="height:4px;border-width:0;color:#f43127;width:55%;background-color:#f43127">
             <form action="#">
                 <label for="fastfood">Meal</label>
                 <input type="checkbox" name="fastfood" id="fastfood"> <br>
@@ -108,6 +127,9 @@ $count = -1;
 
         <?php if ($result->num_rows > 0) { ?>
             <div class="main">
+                <div class="first">
+                    <h3>Top Recommended Dishes</h3>
+                </div>
 
                 <?php while ($row = $result->fetch_assoc()) {
                     $count++; ?>
@@ -124,38 +146,17 @@ $count = -1;
                                     &#8377;
                                     <?php echo $row['price']; ?>
                                 </span>
-                                
+
                             </div>
                             <div class="price">
-                            <button class="box-btn">Buy Now</button>
-                            <form action="cart.php" method="POST">
-                                        <button type="submit" name="add" class="box-btn" value="<?php echo $row['id']; ?>">Add
-                                            to Cart</button>
-                                    </form>
+                                <button class="box-btn">Buy Now</button>
+                                <form action="cart.php" method="POST">
+                                    <button type="submit" name="add" class="box-btn" value="<?php echo $row['id']; ?>">Add
+                                        to Cart</button>
+                                </form>
 
                             </div>
                         </div>
-                        <!-- <table>
-                            <tr>
-                                <td>
-                                    <?php echo $row['name'] ?>
-                                </td>
-                                <td><button class="box-btn">Buy Now</button></td>
-                            </tr>
-                            <tr>
-                                <td> &#8377;
-                                    <?php echo $row['price']; ?>
-                                </td>
-                                <?php $id = $row['id']; ?>
-                                <td>
-                                    <form action="cart.php" method="POST">
-                                        <button type="submit" name="add" class="box-btn" value="<?php echo $row['id']; ?>">Add
-                                            to Cart</button>
-                                    </form>
-                                </td>
-
-                            </tr>
-                        </table> -->
                     </div>
                 <?php } ?>
 
@@ -172,23 +173,7 @@ $count = -1;
     <footer class="footer-distributed" id="footer">
 
         <div class="footer-left">
-
-            <h3>Canteen<span>logo</span></h3>
-
-            <p class="footer-links">
-                <a href="#" class="link-1">Home</a>
-
-                <!-- <a href="#">Blog</a> -->
-
-                <a href="#">Pricing</a>
-
-                <a href="#">About</a>
-
-                <a href="#">Faq</a>
-
-                <a href="#">Contact</a>
-            </p>
-
+            <img src="img/campuscrave.png" alt="" width="300">
             <p class="footer-company-name">Canteen Management system © 2022</p>
         </div>
 
@@ -208,6 +193,19 @@ $count = -1;
                 <i class="fa fa-envelope"></i>
                 <p><a href="mailto:support@company.com">support@company.com</a></p>
             </div>
+            <p class="footer-links">
+                <a href="#" class="link-1">Home</a>
+
+                <!-- <a href="#">Blog</a> -->
+
+                <a href="#">Pricing</a>
+
+                <a href="#">About</a>
+
+                <a href="#">Faq</a>
+
+                <a href="#">Contact</a>
+            </p>
 
         </div>
 
@@ -215,8 +213,10 @@ $count = -1;
 
             <p class="footer-company-about">
                 <span>About the Canteen</span>
-                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus
-                vehicula sit amet.
+                We understand that university life can be busy and stressful, and that finding time to get a good meal
+                can be a challenge. That's why we created this website to make it easier for you to order and enjoy
+                delicious food without the hassle of waiting in long lines or worrying about running out of time between
+                classes.
             </p>
 
             <div class="footer-icons">
@@ -236,6 +236,43 @@ $count = -1;
 
 
     </footer>
+
+    <script>
+        // top sale owl carousel
+// $(document).ready(function(){
+
+// $(".Food-Carousel .owl-carousel").owlCarousel({
+//     loop: true,
+//     nav: true,
+//     dots: false,
+//     responsive : {
+//         0: {
+//             items: 1
+//         },
+//         600: {
+//             items: 3
+//         },
+//         1000 : {
+//             items: 5
+//         }
+//     }
+// });
+// });
+//         let slideIndex = 0;
+// showSlides();
+
+// function showSlides() {
+//   let i;
+//   let slides = document.getElementsByClassName("mySlides");
+//   for (i = 0; i < slides.length; i++) {
+//     slides[i].style.display = "none";
+//   }
+//   slideIndex++;
+//   if (slideIndex > slides.length) {slideIndex = 1}
+//   slides[slideIndex-1].style.display = "block";
+//   setTimeout(showSlides, 1700); // Change image every 2 seconds
+// }
+    </script>
 </body>
 
 </html>

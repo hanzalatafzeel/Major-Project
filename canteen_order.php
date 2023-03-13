@@ -6,7 +6,7 @@ session_start();
 function get(){
     @include 'config.php';
     $sql = "SELECT `order-list`.`order_id`,`order-list`.`time`,`order-list`.`amount` FROM `order-list` INNER JOIN `order-stack` ON `order-list`.`order_id` = `order-stack`.`order_id` order by `order-stack`.`log` desc";
-$result = $db->query($sql);
+    $result = $db->query($sql);
 return $result;
 }
 
@@ -91,7 +91,7 @@ $count = -1;
     <div class="middle">
         <div class="item-list">
                 <?php $result = get();
-                if ($result->num_rows > 0 && false){?>
+                if ($result->num_rows > 0){?>
             <table>
                 <tr>
                     <th>Order Id</th>

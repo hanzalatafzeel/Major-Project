@@ -1,16 +1,22 @@
 .navbar{
 	background: linear-gradient(to right, #FF416C, #ff6014);
-    position: sticky;
-    width: 100vw;
+    /* position: sticky; */
+    position: fixed;
+    width: 98.9vw;
+    z-index: 1;
     margin-top: -1px;
   }
   .yellow{
     color: gold;
+
   }
   .navbar-brand,.nav-link{
     color: #fff;
     font-weight: 500;
     
+  }
+  .nav-item{
+   color: white; 
   }
   .collapse{
     padding-right:30px ;

@@ -7,7 +7,7 @@ if (!isset($_SESSION['id'])) {
     header("location: login.php");
 }
 $oid = $_SESSION['oid'];
-$sql = "SELECT `amount` ,`date`,`time`,`paid`from `order-list` where order_id = '$oid'";
+$sql = "SELECT `amount` ,`date`,`time`,`pay_id`from `order-list` where order_id = '$oid'";
 $result = $db->query($sql);
 $fetch = "";
 if ($result->num_rows > 0) {
@@ -29,66 +29,8 @@ $count = -1;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-
+<link rel="stylesheet" href="invoice.css">
     <title>Document</title>
-    <style>
-        .container {
-            width: 100vw;
-        }
-
-        .receipt {
-            padding: 2%;
-            width: 40%;
-            text-align: center;
-            margin: 0 auto 0 auto;
-            background-color: #e6efed;
-            border-radius: 10px;
-        }
-
-        .time-date {
-            display: flex;
-            justify-content: flex-end;
-            padding-right: 3%;
-        }
-
-        .date,
-        .time {
-            margin-right: 2%;
-        }
-
-        .notpaid:after{
-            content: "Not Paid";
-            color: #f06960;
-            float:left;
-            margin-left:3%;
-            font-weight:bolder;
-            font-family: "Gill Sans", sans-serif;
-            font-feature-settings: "smcp", "zero";
-        }
-
-
-        .description,
-        .item-container {
-            display: grid;
-            grid-template-columns: 33.3% 33.3% 33.3%;
-        }
-
-        hr {
-            border: 1px dashed black;
-        }
-
-        .total-container {
-            text-align: left;
-            padding-left: 15%;
-        }
-
-        .left {
-            margin-right: 18%;
-            float: right;
-        }
-
-        
-    </style>
 </head>
 
 <body>
@@ -96,7 +38,7 @@ $count = -1;
         <div class="receipt" id="myDiv">
             <h1>Jamia Millia Islamia </h1>
             <p>Central Canteen</p>
-            <?php if($orders['paid'])
+            <?php if($orders['pay_id'])
                     $cls = "paid";
                     else
                     $cls = "notpaid";
@@ -179,6 +121,7 @@ $count = -1;
             var divToPrint = document.getElementById("myDiv");
 
             var name = document.getElementById('orderid').innerHTML;
+            console.log(name);
             // Set the options for the PDF
             var options = {
                 filename: name,

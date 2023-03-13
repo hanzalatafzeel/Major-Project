@@ -115,10 +115,6 @@ if(isset($_POST['oid']) && $_POST['oid'] !== ""){
 
     <!-- itemlsit -->
     <div class="pac">
-       
-       
-
-        <!-- add item  -->
         
         <div class="form-popup-pac " id="myForm">
             
@@ -138,11 +134,7 @@ if(isset($_POST['oid']) && $_POST['oid'] !== ""){
                     document.getElementById('pay').click();
                 }
                 </script>
-        </div>
-        
-        <!-- update form  -->
-        
-        
+        </div>        
 
     </div>
 

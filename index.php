@@ -3,8 +3,19 @@
 
 session_start();
 
-$sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` ";
-$result = $db->query($sql);
+if(isset($_POST['srch'])){
+    $srch = '%'.$_POST['srch'].'%';
+    $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` WHERE `name` LIKE '$srch'";
+    $result = $db->query($sql);
+    
+}
+else{
+    $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` ";
+    $result = $db->query($sql);
+ 
+}
+
+
 $count = -1;
 ?>
 
@@ -94,12 +105,17 @@ $count = -1;
     <div class="logo">
         <img src="img/campuscrave.png" alt="" width="450">
 
-        <form action="#">
+        <form action="" method="post" >
             <div class="search">
-                <input type="search" name="" id="" class="searchTerm" placeholder="What are you looking for?">
+                <input type="search" name="srch" id="srch" class="searchTerm" placeholder="What are you looking for?">
                 <button class="fa fa-search searchButton"></button>
             </div>
         </form>
+        <script>
+            if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+            </script>
     </div>
     <?php
     // Include Hero-carousel

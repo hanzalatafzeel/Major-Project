@@ -4,15 +4,18 @@
 session_start();
 
 if(isset($_POST['srch'])){
+    $search = $_POST['srch']; 
     $srch = '%'.$_POST['srch'].'%';
     $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` WHERE `name` LIKE '$srch'";
     $result = $db->query($sql);
+    $text = 'Search Result for '. '"'.$search.'"';
+
     
 }
 else{
     $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` ";
     $result = $db->query($sql);
- 
+    $text = 'Top Recommended Dishes';
 }
 
 
@@ -127,7 +130,7 @@ $count = -1;
     <div class="containers">
         <div class="sidebar">
             <h3>Categories</h3>
-            <hr style="height:4px;border-width:0;color:#f43127;width:55%;background-color:#f43127">
+            <hr style="height:3px;border-width:0;width:55%;background-color:crimson">
             <form action="#">
                 <label for="fastfood">Meal</label>
                 <input type="checkbox" name="fastfood" id="fastfood"> <br>
@@ -146,7 +149,7 @@ $count = -1;
         <?php if ($result->num_rows > 0) { ?>
             <div class="main">
                 <div class="first">
-                    <h3>Top Recommended Dishes</h3>
+                    <h3><?php echo $text ?></h3>
                 </div>
 
                 <?php while ($row = $result->fetch_assoc()) {
@@ -255,42 +258,6 @@ $count = -1;
 
     </footer>
 
-    <script>
-        // top sale owl carousel
-// $(document).ready(function(){
-
-// $(".Food-Carousel .owl-carousel").owlCarousel({
-//     loop: true,
-//     nav: true,
-//     dots: false,
-//     responsive : {
-//         0: {
-//             items: 1
-//         },
-//         600: {
-//             items: 3
-//         },
-//         1000 : {
-//             items: 5
-//         }
-//     }
-// });
-// });
-//         let slideIndex = 0;
-// showSlides();
-
-// function showSlides() {
-//   let i;
-//   let slides = document.getElementsByClassName("mySlides");
-//   for (i = 0; i < slides.length; i++) {
-//     slides[i].style.display = "none";
-//   }
-//   slideIndex++;
-//   if (slideIndex > slides.length) {slideIndex = 1}
-//   slides[slideIndex-1].style.display = "block";
-//   setTimeout(showSlides, 1700); // Change image every 2 seconds
-// }
-    </script>
 </body>
 
 </html>

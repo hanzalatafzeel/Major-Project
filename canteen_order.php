@@ -57,7 +57,8 @@ $count = -1;
 <body>
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand pageName" href="index.html">Canteen</a>
+    <a class="navbar-brand pageName" href="index.php"><span class="yellow">C</span>ampus<span
+                class="yellow">C</span>rave </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

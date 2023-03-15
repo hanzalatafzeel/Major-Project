@@ -11,7 +11,6 @@ if(isset($_POST['srch'])){
     $text = 'Search Result for '. '"'.$search.'"';
 
     
-    
 }
 else{
     $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` ";
@@ -143,13 +142,14 @@ $count = -1;
                 <input type="checkbox" name="fastfood" id="fastfood"><br>
                 <label for="fastfood">Beverages</label>
                 <input type="checkbox" name="fastfood" id="fastfood">
+
             </form>
         </div>
 
         <?php if ($result->num_rows > 0) { ?>
             <div class="main">
                 <div class="first">
-                    <h3>Top Recommended Dishes</h3>
+                    <h3><?php echo $text ?></h3>
                 </div>
 
                 <?php while ($row = $result->fetch_assoc()) {
@@ -191,72 +191,11 @@ $count = -1;
 
     <!-- Footer -->
 
-    <footer class="footer-distributed" id="footer">
-
-        <div class="footer-left">
-            <img src="img/campuscrave.png" alt="" width="300">
-            <p class="footer-company-name">Canteen Management system © 2022</p>
-        </div>
-
-        <div class="footer-center">
-
-            <div>
-                <i class="fa fa-map-marker"></i>
-                <p><span>Jamia Millia Islamia</span> Jamia Nagar, New Delhi</p>
-            </div>
-
-            <div>
-                <i class="fa fa-phone"></i>
-                <p>Mob: 6203756460</p>
-            </div>
-
-            <div>
-                <i class="fa fa-envelope"></i>
-                <p><a href="mailto:support@company.com">support@company.com</a></p>
-            </div>
-            <p class="footer-links">
-                <a href="#" class="link-1">Home</a>
-
-                <!-- <a href="#">Blog</a> -->
-
-                <a href="#">Pricing</a>
-
-                <a href="#">About</a>
-
-                <a href="#">Faq</a>
-
-                <a href="#">Contact</a>
-            </p>
-
-        </div>
-
-        <div class="footer-right">
-
-            <p class="footer-company-about">
-                <span>About the Canteen</span>
-                We understand that university life can be busy and stressful, and that finding time to get a good meal
-                can be a challenge. That's why we created this website to make it easier for you to order and enjoy
-                delicious food without the hassle of waiting in long lines or worrying about running out of time between
-                classes.
-            </p>
-
-            <div class="footer-icons">
-
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
-
-            </div>
-
-        </div>
-        <script src="cart.js"></script>
-        <?php if (isset($_SESSION['logged'])) { ?>
-            <div id="work"></div>
-        <?php } ?>
-
-
-    </footer>
+    
+    <!-- <?php if (isset($_SESSION['logged'])) { ?>
+        <div id="work"></div>
+    <?php } ?> -->
+    <?php @include 'templates/footer.php'?>
 
 </body>
 

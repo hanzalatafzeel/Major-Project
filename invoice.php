@@ -93,9 +93,7 @@ $count = -1;
                     </span></div>
                 </div>
             <!-- </diV> -->
-                <span id="orderid" style="display:none">
-                    <?php echo $oid; ?>
-                </span>
+                <span id="orderid" style="display:none" ><?php echo $oid; ?></span>
             <?php } else {
                 ?>
                 <div>
@@ -120,7 +118,7 @@ $count = -1;
             // Get the div element by its ID
             var divToPrint = document.getElementById("myDiv");
 
-            var name = document.getElementById('orderid').innerHTML;
+            const name = document.getElementById('orderid').innerHTML;
             console.log(name);
             // Set the options for the PDF
             var options = {

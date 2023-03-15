@@ -4,6 +4,7 @@ body{
 }
 .main{
     font-family: 'Sono', sans-serif;
+    letter-spacing: -1.5px;
     background-color: #fbefe4;
     display: grid;
     grid-template-columns: auto auto auto ;

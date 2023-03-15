@@ -53,7 +53,8 @@ if(isset($_SESSION['regerr'])){
 <body>
         <!-- Nav Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand pageName" href="index.html">Canteen</a>
+        <a class="navbar-brand pageName" href="index.php"><span class="yellow">C</span>ampus<span
+                class="yellow">C</span>rave </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
                 aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -77,54 +78,6 @@ if(isset($_SESSION['regerr'])){
                 </ul>
             </div>
         </nav>
-
-    <!-- login flip  -->
-    <!-- <div class="flip-card-3D-wrapper log-box">
-        <div id="flip-card">
-            <div class="<?php echo $front;?>">
-
-                <form action="form.php" method="post" enctype="multipart/form-data">
-                   
-                    <select name="who" id="who" >
-                        <option value="null">I am a </option>
-                        <option value="student">Bonafide Student</option>
-                        <option value="canteen">Canteen</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                    <input type="email" name="email" required placeholder="Enter your email">
-                    <input type="password" name="password" required placeholder="Enter your password">
-
-                    <input type="submit" id="login-s" name="login-s" value="login" class="form-btn">
-                    <p>don't have an account? <a id="flip-card-btn-turn-to-back" class="flip">Register</a></p>
-                    
-                </form>
-            </div>
-            signup flip  
-            <div class="<?php echo $back;?>">
-                
-                <form action="form.php" method="POST"  enctype="multipart/form-data">
-                    <div class="formError"></div>
-                    <select name="type" id="type" onchange="who('type')" >
-                        <option value="null">I am a </option>
-                        <option value="student">Bonafide Student</option>
-                        <option value="canteen">Canteen</option>
-                    </select>
-                    <input type="text" id="student" name="student" class="hide" placeholder="Student Id ">
-                    <input type="text" id="canteen" name="canteen" class="hide" placeholder="Canteen Id ">
-                    <input type="text" id="name" name="name" placeholder="Name">
-                    <input type="email" id="email" name="email" onchange="validateEmail('email','emailerr')" placeholder="Email">
-                    <p id="emailerr" style="color:red;"></p>
-                    <input type="number" id="phone" name="phone"  placeholder="Contact Number">
-                    <input type="password" name="password" id="password"  placeholder="Enter your password">
-                    <input type="password" placeholder="confirm password">
-
-                    <input type="submit" id="register-s" name="register-s" value="register" class="form-btn">
-                    <p>Already have an account? <a id="flip-card-btn-turn-to-front" class="flip">Login</a></p>
-                
-                </form>
-            </div>
-        </div>
-    </div> -->
 
 
     <div>
@@ -176,19 +129,14 @@ if(isset($_SESSION['regerr'])){
                     <input type="email" name="email" required placeholder="Enter your email">
                     <input type="password" name="password" required placeholder="Enter your password">
                     <button type="submit" id="login-s" name="login-s">Sign In</button>
-                    
-                    <!-- <input type="submit" id="login-s" name="login-s" value="login" class="form-btn"> -->
-                    <!-- <p>don't have an account? <a id="flip-card-btn-turn-to-back" class="flip">Register</a></p> -->
-
-                    <!-- <input type="email" name="email" placeholder="Email">
-                    <input type="password" name="password" placeholder="Password">-->
 
                 </form>
             </div>
             <div class="overlay-container">
                 <div class="overlay">
                     <div class="overlay-panel overlay-left">
-                        <h1>Welcome Back!</h1>
+                        
+                    <h1>Welcome Back!</h1>
                         <p>Login with your personal info and pre-order food now</p>
                         <button class="ghost" id="signIn">Sign In</button>
                     </div>
@@ -277,7 +225,6 @@ if(isset($_SESSION['regerr'])){
 		container.classList.remove("right-panel-active");
 	});
 </script>
-
 
 </body>
 

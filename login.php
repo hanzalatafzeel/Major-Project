@@ -144,7 +144,7 @@ if(isset($_SESSION['regerr'])){
                     <select name="type" id="type" onchange="who('type')" >
                         <option value="null">I am a </option>
                         <option value="student">Bonafide Student</option>
-                        <option value="canteen">Canteen</option>
+                        <option value="canteen">Canteen Staff</option>
                     </select>
                     <input type="text" id="student" name="student" class="hide" placeholder="Student Id ">
                     <input type="text" id="canteen" name="canteen" class="hide" placeholder="Canteen Id ">
@@ -170,7 +170,7 @@ if(isset($_SESSION['regerr'])){
                     <select name="who" id="who" >
                         <option value="null">I am a </option>
                         <option value="student">Bonafide Student</option>
-                        <option value="canteen">Canteen</option>
+                        <option value="canteen">Canteen Staff</option>
                         <option value="admin">Admin</option>
                     </select>
                     <input type="email" name="email" required placeholder="Enter your email">

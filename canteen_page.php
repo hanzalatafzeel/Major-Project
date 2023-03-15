@@ -11,7 +11,7 @@ function get(){
     return $result;
 }
 
-if(isset($_POST['del'])){
+if(isset($_POST['del']) && $_SESSION['logtype'] === "canteen"){
     $iid = $_POST['del'];
     $sql = "DELETE FROM `item` where id = '$iid'";
     $del = $db->query($sql);
@@ -72,9 +72,25 @@ $count = -1;
                     <a class="nav-link" href="#footer">Contact</a>
                 </li>
                 <!-- about button -->
-                <li class="nav-item">
-                    <a class="nav-link" id="signup" href="#signup" value="signup">sign Up</a>
-                </li>
+                <?php if (isset($_SESSION['logged']) && $_SESSION['logtype'] === "canteen") { $log = false; ?>
+                    <li class="nav-item">
+                        <!-- <a class="nav-link" id="signup" href="login.html" value="signup">sign Up</a> -->
+                        <a class="nav-link" href="logout.php" value="LogOut">LogOut</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="help.html">Help</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.php"><i class="fa fa-user" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="checkout.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                    </li>
+                <?php } else { $log = true;?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php" value="Login">Login</a>
+                    </li>
+                <?php } ?>
                 <!-- login button -->
                 <li class="nav-item">
                     <a class="nav-link" href="help.html">Help</a>
@@ -90,6 +106,8 @@ $count = -1;
     <!-- itemlsit -->
     <div class="middle">
         <div class="item-list">
+            <!-- yaha pe krna hai-->
+            <p id="msg">You can't make any changes until you logged in as canteen staff</p>
             <table>
                 <tr>
                     <th>Item Id</th>

@@ -1,6 +1,6 @@
 <?php
 require_once 'config.php';
-if(isset($_POST['submit'])){
+if(isset($_POST['submit']) && $_SESSION['logtype'] === "canteen"){
 $id = $_POST['id'];
 $name = $_POST['name'];
 $price = $_POST['price'];

@@ -8,11 +8,12 @@ if(isset($_POST['srch'])){
     $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` WHERE `name` LIKE '$srch'";
     $result = $db->query($sql);
     
+    
 }
 else{
     $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` ";
     $result = $db->query($sql);
- 
+   
 }
 
 
@@ -137,14 +138,13 @@ $count = -1;
                 <input type="checkbox" name="fastfood" id="fastfood"><br>
                 <label for="fastfood">Beverages</label>
                 <input type="checkbox" name="fastfood" id="fastfood">
-
             </form>
         </div>
 
         <?php if ($result->num_rows > 0) { ?>
             <div class="main">
                 <div class="first">
-                    <h3>Top Recommended Dishes</h3>
+                    
                 </div>
 
                 <?php while ($row = $result->fetch_assoc()) {

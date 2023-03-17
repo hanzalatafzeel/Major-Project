@@ -51,7 +51,7 @@ if(isset($_POST['oid']) && $_POST['oid'] !== ""){
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Bootstrap-css-->
@@ -84,7 +84,8 @@ if(isset($_POST['oid']) && $_POST['oid'] !== ""){
 <body>
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand pageName" href="index.html">Canteen</a>
+    <a class="navbar-brand pageName" href="index.php"><span class="yellow">C</span>ampus<span
+                class="yellow">C</span>rave </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -113,8 +114,37 @@ if(isset($_POST['oid']) && $_POST['oid'] !== ""){
         </div>
     </nav>
 
+    <div>
+
+    </div>
+
     <!-- itemlsit -->
-    <div class="pac">
+    <div class="middle">
+        <div class="paycard" id="">
+
+        <form action="" class="payform" method="post" enctype="plain/text">
+                <input type="text" placeholder="Student Id" name="id" value="<?php echo $id;?>" onchange="check()" ><br>
+                <input type="password" placeholder="Order Id" id="oid" name="oid" value="<?php echo $get['id'];?>" <?php echo $ro ?>>
+                <br>
+                <input type="text" placeholder="name" value="<?php echo $get['name'];?>" <?php echo $ro ?>>
+                
+                <input type="number" placeholder="Amount To Pay" name="amt" id="amt"value="<?php echo $get['amount'];?>" <?php echo $ro ?>>
+                
+                <button class="qsubmit" name="pay" id="pay" value="<?php echo $id;?>" >Make Paid</button>
+            </form>
+
+            <script>
+                function check(){
+                    document.getElementById('pay').click();
+                }
+                </script>
+
+        </div>
+    </div>
+
+
+
+    <!-- <div class="paycard">
         
         <div class="form-popup-pac " id="myForm">
             
@@ -136,7 +166,9 @@ if(isset($_POST['oid']) && $_POST['oid'] !== ""){
                 </script>
         </div>        
 
-    </div>
+    </div> -->
+
+    
 
     <!-- Footer -->
 

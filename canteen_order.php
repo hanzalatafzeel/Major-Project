@@ -90,7 +90,7 @@ $count = -1;
 
     <!-- itemlsit -->
     <div class="middle">
-        <div class="item-list">
+        <div class="item-list" id="orderlist">
                 <?php $result = get();
                 if ($result->num_rows > 0){?>
             <table>
@@ -161,7 +161,7 @@ $count = -1;
     
     ?>
 
-<button class="open-button" onclick="refresh()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+<button class="open-button" onclick="refresh()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
 
 
     <!-- Footer -->

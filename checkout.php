@@ -155,8 +155,10 @@ $count = -1;
                 </div>
             <?php } else {
                 ?>
-                <div>
-                    <h1>Your cart is empty !</h1>
+                <div class="emptymsg">
+                    <h1>Oops! Your cart is empty !</h1>
+                    <p>Looks like you haven't added anything to your cart yet</p>
+                    <a href="index.php" class="box-btn">Go to Home</a>
                 </div>
             <?php } ?>
 

@@ -59,7 +59,8 @@ $count = -1;
 <body>
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand pageName" href="index.html">Canteen</a>
+    <a class="navbar-brand pageName" href="index.php"><span class="yellow">C</span>ampus<span
+                class="yellow">C</span>rave </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -81,12 +82,7 @@ $count = -1;
                     <li class="nav-item">
                         <a class="nav-link" href="help.html">Help</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.php"><i class="fa fa-user" aria-hidden="true"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="checkout.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                    </li>
+
                 <?php } else { $log = true;?>
                     <li class="nav-item">
                         <a class="nav-link" href="login.php" value="Login">Login</a>

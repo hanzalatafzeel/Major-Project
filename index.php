@@ -131,8 +131,16 @@ $count = -1;
         <div class="sidebar">
             <h3>Categories</h3>
             <hr style="height:3px;border-width:0;width:55%;background-color:crimson">
-            <form action="#">
-                <label for="fastfood">Meal</label>
+
+            <button class="box-btn"><i class="fas fa-drumstick-bite"></i> Veg</button>
+            <button class="box-btn"><i class="fas fa-drumstick-bite"></i> Non-Veg</button>
+            <button class="box-btn"><i class="fas fa-hamburger"></i> Fast Foods</button>
+            <button class="box-btn"><i class="fa-solid fa-cup-straw"></i>Beverages</button>
+
+
+            <!-- <form action="#">
+
+                <label for="fastfood"> </label>
                 <input type="checkbox" name="fastfood" id="fastfood"> <br>
                 <label for="fastfood">Fast Food</label>
                 <input type="checkbox" name="fastfood" id="fastfood"><br>
@@ -143,7 +151,7 @@ $count = -1;
                 <label for="fastfood">Beverages</label>
                 <input type="checkbox" name="fastfood" id="fastfood">
 
-            </form>
+            </form> -->
         </div>
 
         <?php if ($result->num_rows > 0) { ?>

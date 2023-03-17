@@ -3,29 +3,29 @@ body{
     background-color: #fbefe4;
 }
 .main{
-    font-family: 'Sono', sans-serif;
-    letter-spacing: -1.5px;
+    border-radius: 10px;
     background-color: #fbefe4;
     display: grid;
-    grid-template-columns: auto auto auto ;
+    font-family: 'Sono', sans-serif;
+    grid-template-columns: 33.33% 33.33% 33.33%  ;
+    letter-spacing: -1.5px;
     padding-top: 30px;
-    border-radius: 10px;
 }
 .first{
     grid-column: span 3;
     padding-left: 5%;
-    
 }
 .first h3{
     letter-spacing: -2px;
 }
-
+a{
+    text-decoration: none;
+}
 .box{
     background-color: #fff;
     max-width: 70%;
     max-height: 424px;
     margin: 3% auto 3% auto;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 10px;
 }
 
@@ -38,18 +38,14 @@ body{
 }
 .image img{
     height: 251px;
-    /* border-radius: 10px; */
-    /* aspect-ratio: 3/2; */
     width: 242px;
-
 }
 
 
 /* for box button */
 .box-btn{
-    background-color: #f43127;
+    background: linear-gradient(to right, #FF416C, #ff6014);
     color: #fff ;
-    
     width: 12.5rem;
     border: none;
     margin-top: 2%;
@@ -58,19 +54,23 @@ body{
 }
 
 .box-btn:hover{
-    background-color: #ed3b31d3;
+    background: linear-gradient(to right, crimson, crimson);
+}
+
+.box:hover{
+    box-shadow: 0px 0px 13px 6px rgba(155, 142, 142, 0.75);
 }
 
 .containers{
     display: flex;
     margin: 4%;
-    /* grid-template-columns: 20% 80%; */
     column-gap: 20px;
     margin-top: 4%;
 }
 .main{
     width: 80%;
 }
+
 
 .sidebar{
     background-color: #fbefe4;
@@ -107,7 +107,6 @@ body{
     }
     .first{
         grid-column: span 2;
-        /* padding-left: 5%; */
     }
    
     .box-btn{
@@ -118,21 +117,20 @@ body{
     }
 }
 
-@media (max-width:660px){
+@media (max-width:786px){
 
-    /* .main{
+    .main{
         grid-template-columns: auto  ;
         width: 100%;
     }
+    
     .first{
         grid-column: span 1;
-    } */
+    }
     .sidebar{
         display: none;
     }
 }
-
-/* crousel  */
 
 /* Top - Carousel */
 .Hero-car{
@@ -156,10 +154,6 @@ body{
     background: linear-gradient(to bottom, rgba(0,0,0,.8), rgba(0,0,0,.5));
 }
 
-
-
-
-
 .logo{
     z-index: 1;
     position: absolute;
@@ -168,20 +162,17 @@ body{
     transform: translate(-50%, 0);
 }
 
+/* css for search  */
 
 .search {
     width: 100%;
-    /* width: calc( 630 * (100vw / 1960 ) ); */
     position: relative;
     display: flex;
   }
   
   .searchTerm {
     width: 100%;
-    /* width:calc( 960 * (100vw / 1960 ) );  */
     border: 3px solid #FF416C;
-    /* border-image: linear-gradient(to right, #FF416C, #ff6014); */
-
     border-right: none;
     padding: 15px;
     height: 46px;

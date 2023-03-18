@@ -23,10 +23,10 @@ if(isset($_SESSION['regerr'])){
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
     <!--Stylesheet-->
     <!-- <link rel="stylesheet" href="login.css"> -->
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="Stylesheets/style1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="Stylesheets/footer.css">
+    <link rel="stylesheet" href="Stylesheets/navbar.css">
     <!--font-icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="

@@ -116,4 +116,12 @@ hr{
 #name{
     margin: 3.5% 0 3.5% 0;
 }
+.emptymsg {
+    text-align: center;
+}
+.emptymsg h1{
+    color: crimson;
+
+}
+
 

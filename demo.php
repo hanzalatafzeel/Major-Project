@@ -1,6 +1,8 @@
 <?php
 require_once 'config.php';
-if(isset($_POST['submit']) && $_SESSION['logtype'] === "canteen"){
+session_start();
+if(isset($_SESSION['logtype'])){
+if(isset($_POST['submit'])){
 $id = $_POST['id'];
 $name = $_POST['name'];
 $price = $_POST['price'];
@@ -30,7 +32,6 @@ $cid = $_POST['c_id'];
     }
   }
 }
-else{
-  header("location: canteen_page.php");
 }
+echo "here";
 ?>

@@ -23,6 +23,11 @@
     width: 30%;
 }
 
+.footer-distributed .footer-left img{
+    width: 100%;
+}
+
+
 /* The company logo */
 
 .footer-distributed h3{

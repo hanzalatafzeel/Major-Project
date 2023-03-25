@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 700px;
+            margin: 0 auto 0 auto;
+            display: grid;
+            grid-template-areas: 
+            "i1 i1 i2 i2"
+            "i1 i1 i3 i4"
+            "i5 i5 i6 i6"
+            "i7 i8 i6 i6";
+            gap: 2px;
+        }
+        .item{
+            overflow-y: scroll;
+            overflow-x: scroll;
+
+            /* height: 200px;
+            width: 200px; */
+        }
+        .item1{
+            grid-area: i1;
+            background-color: crimson;
+
+            width: 400px;
+            height: 400px;
+        }
+        .item2{
+            background-color: fuchsia;
+
+            grid-area: i2;
+            height: 200px;
+            width: 400px;
+            
+        }
+        .item3{
+            background-color: turquoise;
+            grid-area: i3;
+            height: 200px;
+            width: 200px;
+            
+        }
+        .item4{
+            background-color: blueviolet;
+            grid-area: i4;
+            height: 200px;
+            width: 200px;
+            
+        }
+        .item5{
+            background-color: grey;
+            grid-area: i5;
+            height: 200px;
+            width: 400px;
+            
+        }
+        .item6{
+            background-color: coral;
+
+            grid-area: i6;
+            width: 400px;
+            height: 400px;
+        }
+        .item7{
+            background-color: gold;
+            grid-area: i7;
+            height: 200px;
+            width: 200px;
+        }
+        .item8{
+            background-color: green;
+            grid-area: i8;
+            height: 200px;
+            width: 200px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item item2">Lorem
+            <img src="img/img-1.jpg" alt="" width="400px"> 
+        </div>
+        <div class="item item1">
+            <img src="img/img-2.jpg" alt="" height="200px">
+        </div>
+        <div class="item item3">
+            <img src="img/img-3.jpg" alt="" width="200px">
+        </div>
+        <div class="item item4">
+            <img src="img/img-4.jpg" alt="" width="200px">
+        </div>
+        <div class="item item5">
+            <img src="img/img-5.jpg" alt="" width="200px">
+        </div>
+        <div class="item item6">
+            <img src="img/img-6.jpg" alt="" width="200px">
+        </div>
+        <div class="item item7">
+            <img src="img/img-1.jpg" alt="" width="200px">
+        </div>
+        <div class="item item8">
+            <img src="img/img-1.jpg" alt="" width="200px">
+         </div>
+        <!-- <div class="item"></div> -->
+    </div>
+</body>
+</html>

@@ -29,13 +29,13 @@ $count = -1;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Stylesheets/footer.css">
+    <link rel="stylesheet" href="Stylesheets/style.css">
     
     <!--Bootstrap-css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
-    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="Stylesheets/navbar.css">
     <!--Stylesheet-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -65,7 +65,7 @@ $count = -1;
         <a class="navbar-brand pageName" href="index.php"><span class="yellow">C</span>ampus<span
                 class="yellow">C</span>rave </a>
         <!-- <img src="img/campuscrave.png" alt="" width="80"> -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+        <button class="navbar-toggler ham" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -131,8 +131,16 @@ $count = -1;
         <div class="sidebar">
             <h3>Categories</h3>
             <hr style="height:3px;border-width:0;width:55%;background-color:crimson">
-            <form action="#">
-                <label for="fastfood">Meal</label>
+
+            <button class="box-btn"><i class="fas fa-drumstick-bite"></i> Veg</button>
+            <button class="box-btn"><i class="fas fa-drumstick-bite"></i> Non-Veg</button>
+            <button class="box-btn"><i class="fas fa-hamburger"></i> Fast Foods</button>
+            <button class="box-btn"><i class="fa-solid fa-cup-straw"></i>Beverages</button>
+
+
+            <!-- <form action="#">
+
+                <label for="fastfood"> </label>
                 <input type="checkbox" name="fastfood" id="fastfood"> <br>
                 <label for="fastfood">Fast Food</label>
                 <input type="checkbox" name="fastfood" id="fastfood"><br>
@@ -143,7 +151,7 @@ $count = -1;
                 <label for="fastfood">Beverages</label>
                 <input type="checkbox" name="fastfood" id="fastfood">
 
-            </form>
+            </form> -->
         </div>
 
         <?php if ($result->num_rows > 0) { ?>

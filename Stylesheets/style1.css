@@ -257,3 +257,28 @@ body{
 	height: 40px;
 	width: 40px;
 }
+
+@media (max-width:780px){
+	.upper-login form{
+		display: block;
+	}
+	.upper-login .overlay-container {
+		position: absolute;
+		top: 40%;
+		height: 100%;
+		overflow: hidden;
+		transition: transform 0.6s ease-in-out;
+		z-index: 100;
+	}
+	.upper-login .overlay-panel {
+		height: 60%;
+	}
+	.upper-login .container {
+		position: relative;
+		padding: 0;
+		width: 768px;
+		max-width: 100%;
+		min-height: 1000px;
+		margin-bottom: 70px;
+	}
+}

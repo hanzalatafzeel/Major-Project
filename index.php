@@ -130,12 +130,12 @@ $count = -1;
     <div class="containers">
         <div class="sidebar">
             <h3>Categories</h3>
-            <hr style="height:3px;border-width:0;width:55%;background-color:crimson">
+            <hr style="height:3px;border-width:0;width:75%;background-color:crimson">
 
-            <button class="box-btn"><i class="fas fa-drumstick-bite"></i> Veg</button>
-            <button class="box-btn"><i class="fas fa-drumstick-bite"></i> Non-Veg</button>
-            <button class="box-btn"><i class="fas fa-hamburger"></i> Fast Foods</button>
-            <button class="box-btn"><i class="fa-solid fa-cup-straw"></i>Beverages</button>
+            <button class="box-btn wh"><i class="fas fa-drumstick-bite"></i> Veg</button>
+            <button class="box-btn wh"><i class="fas fa-drumstick-bite"></i> Non-Veg</button>
+            <button class="box-btn wh"><i class="fas fa-hamburger"></i> Fast Foods</button>
+            <button class="box-btn wh"><i class="fas fa-coffee"></i> Beverages</button>
 
 
             <!-- <form action="#">

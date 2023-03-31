@@ -51,6 +51,7 @@ a{
     margin-top: 2%;
     margin-bottom: 2%;
     border-radius: 6px;
+    text-decoration: none;
 }
 
 .box-btn:hover{
@@ -76,10 +77,13 @@ a{
     background-color: #fbefe4;
     position: sticky;
     width: 20%;
-    top: 0;
+    top: 60px;
     height: 400px;
     border-radius: 10px;
     padding: 30px 0px 0px  15px ;
+}
+.wh{
+    width: 90%;
 }
 
 .namePrice{

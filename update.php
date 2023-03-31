@@ -33,8 +33,8 @@ function item($item){
 
     $id = $item['id'];
     $price = $item['price'];
-
-    $sql = "UPDATE `item` SET  price='$price' WHERE id='$id'";
+    $category = $item['category'];
+    $sql = "UPDATE `item` SET category = '$category', price='$price' WHERE id='$id'";
     $return = $db->query($sql);
     if($return){
         header("location: canteen_page.php");

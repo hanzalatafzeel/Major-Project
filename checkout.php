@@ -149,7 +149,7 @@ $count = -1;
                     <p>Item Total &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&#8377;
                         <?php echo $orders['amount'] ?>
                     </p>
-                    <a href="payment.php" class="checkout-btn"><i class="fa fa-shopping-cart"
+                    <a href="payment.php" class="checkout-btn box-btn"><i class="fa fa-shopping-cart"
                             aria-hidden="true"></i>Proceed to checkout</a>
                     <!-- <button href="payment.html" class="checkout-btn"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Proceed to checkout</button> -->
                 </div>

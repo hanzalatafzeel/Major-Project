@@ -88,13 +88,14 @@ hr{
 .pay-method li {
     list-style-type: none;
     padding: 10px;
+    border-radius: 5px;
 }
 .pay-method li a {
     text-decoration: none;
     color: black;
 }
 #pay-meth li:hover{
-    background-color: #1aae9f;
+    background: linear-gradient(to right, #FF416C, #ff6014);
 }
 
 #paycard input::-webkit-outer-spin-button,

@@ -130,7 +130,7 @@ $count = -1;
     <div class="containers">
         <div class="sidebar">
             <h3>Categories</h3>
-            <hr style="height:3px;border-width:0;width:55%;background-color:crimson">
+            <hr style="height:3px;border-width:0;width:75%;background-color:crimson">
 
             <button class="box-btn" onclick="filter('veg')"><i class="fas fa-drumstick-bite"></i> Veg</button>
             <button class="box-btn" onclick="filter('nonveg')"><i class="fas fa-drumstick-bite"></i> Non-Veg</button>

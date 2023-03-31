@@ -6,7 +6,7 @@ session_start();
 
 function get(){
     @include 'config.php';
-    $sql = "SELECT `id`,`name`,`price`,`c_id`  FROM `item` ";
+    $sql = "SELECT `id`,`name`,`price`,`c_id`, `category` FROM `item` ";
     $result = $db->query($sql);
     return $result;
 }
@@ -156,6 +156,17 @@ $count = -1;
                 <input type="text" value="<?php echo $row['price'] ?>" name="price" placeholder="Price">
 
                 <input type="text" value="<?php echo $row['c_id'] ?>" name="c_id" readonly>
+
+                <select name="category" id="">
+                    <option value="#"><?php echo $row['category'] ?> </option>
+                    <option value="veg">Veg</option>
+                    <option value="nonveg">Non-Veg</option>
+                    <option value="beverage">Beverages</option>
+                    <option value="fastfood">Fast Foods</option>
+
+
+                </select>
+                <br>
 
                 <button class="qsubmit" name="update" value = "item" >Update</button>
             </form>

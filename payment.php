@@ -105,9 +105,9 @@ $time = date("h:i");
             <div class="pay-method" id="pay-meth">
                 <h4>Payment Methods </h4>
                 <!-- <li><a href=""> <i class="fa-solid fa-wallet"></i>  Wallet </a></li> -->
-                <li><a href="#" onclick="upishow()" > <img src="icons8-bhim-upi-50.png" alt="" width="20"> UPI </a></li>
-                <li><a href="#"  onclick="cardshow()" ><i class="fa fa-credit-card"></i> Credit & Debit cards</a></li>
-                <li><a href="#" onclick="pod()" ><i class="fa fa-money" aria-hidden="true"></i> Pay at canteen</a></li>
+                <li><a href="#"  onclick="upishow()"  > <img src="icons8-bhim-upi-50.png" alt="" width="20"> UPI </a></li>
+                <li><a href="#"   onclick="cardshow()"  ><i class="fa fa-credit-card"></i> Credit & Debit cards</a></li>
+                <li><a href="#"  onclick="pod()"  ><i class="fa fa-money" aria-hidden="true"></i> Pay at canteen</a></li>
             </div>
             <div class="vr">
                 
@@ -119,7 +119,7 @@ $time = date("h:i");
                 <li><a href=""><i class='fab fa-amazon-pay'></i> Amazon Pay</a></li>
                 <li><a href=""><img src="icons8-paytm-48.png" alt="" width="22">  Paytm</a></li>
                 
-                    <button class="checkout-btn" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377;XYZ</button>
+                    <button class="checkout-btn box-btn" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377;XYZ</button>
                
             </div>
 
@@ -200,14 +200,14 @@ $time = date("h:i");
                         </div>
                     </div>
                     <!-- row -->
-                    <button class="checkout-btn" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377;XYZ</button>
+                    <button class="checkout-btn box-btn" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377;XYZ</button>
                   </form>
             </div>
             <div class="pay-method " id="pod">
                 <h4>Cash on Delivery</h4>
                 <form action="" method="post">
                     
-                    <button class="checkout-btn" name="pay" id="pay" value="paid" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377; <?php echo $orders['amount']; ?></button>
+                    <button class="checkout-btn box-btn" name="pay" id="pay" value="paid" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377; <?php echo $orders['amount']; ?></button>
                 </form>
             </div>
             <div class="pay-method " id="pap">

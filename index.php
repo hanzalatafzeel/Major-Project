@@ -12,6 +12,13 @@ if(isset($_POST['srch'])){
 
     
 }
+else if(isset($_POST['filter'])){
+    $filter = $_POST['filter']; 
+    
+    $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` WHERE `category` = '$filter'";
+    $result = $db->query($sql);
+    $text = 'Filter Result for '. '"'.$filter.'"';
+}
 else{
     $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` ";
     $result = $db->query($sql);
@@ -137,13 +144,12 @@ $count = -1;
             <button class="box-btn"  onclick="filter('fastfood')"><i class="fas fa-hamburger"></i> Fast Foods</button>
             <button class="box-btn"  onclick="filter('beverages')"><i class="fa-solid fa-cup-straw"></i>Beverages</button>
 <form action="" method="POST" style="display:none">
-    <input type="text" name="srch" id="fsrch">
-    <button id="filter" name="filter"></button>
+    <button id="filter" name="filter" value=""></button>
 </form>
 <script>
     function filter(cat){
-        documents.getElementById('fsrch').value = cat;
-        documents.getElementById('filter').Click();
+        document.getElementById('filter').value = cat;
+        document.getElementById('filter').click();
 
     }
     </script>

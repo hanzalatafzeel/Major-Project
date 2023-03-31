@@ -210,6 +210,13 @@ $time = date("h:i");
                     <button class="checkout-btn" name="pay" id="pay" value="paid" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377; <?php echo $orders['amount']; ?></button>
                 </form>
             </div>
+            <div class="pay-method " id="pap">
+                <h4>PAY NOW </h4>
+                <form action="gateway.php" method="post">
+                    
+                    <button class="checkout-btn" name="rpay" id="rpay" value="paid" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377; <?php echo $orders['amount']; ?></button>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -223,6 +230,7 @@ $time = date("h:i");
             document.getElementById("payupi").style.display ="block";
             document.getElementById("paycard").style.display ="none";  
             document.getElementById("pod").style.display="none";
+            document.getElementById("pap").style.display="none";
 
 
         }
@@ -230,13 +238,23 @@ $time = date("h:i");
             document.getElementById("paycard").style.display ="block";    
             document.getElementById("payupi").style.display ="none";  
             document.getElementById("pod").style.display="none";
+            document.getElementById("pap").style.display="none";
         }
         function pod(){
             document.getElementById("pod").style.display="block";
             document.getElementById("paycard").style.display ="none"; 
             document.getElementById("payupi").style.display ="none";  
+            document.getElementById("pap").style.display="none";
 
         }
+        function pod(){
+            document.getElementById("pap").style.display="block";
+            document.getElementById("pod").style.display="none";
+            document.getElementById("paycard").style.display ="none"; 
+            document.getElementById("payupi").style.display ="none";  
+
+        }
+
     </script>
 </body>
 

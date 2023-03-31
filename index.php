@@ -132,12 +132,21 @@ $count = -1;
             <h3>Categories</h3>
             <hr style="height:3px;border-width:0;width:55%;background-color:crimson">
 
-            <button class="box-btn"><i class="fas fa-drumstick-bite"></i> Veg</button>
-            <button class="box-btn"><i class="fas fa-drumstick-bite"></i> Non-Veg</button>
-            <button class="box-btn"><i class="fas fa-hamburger"></i> Fast Foods</button>
-            <button class="box-btn"><i class="fa-solid fa-cup-straw"></i>Beverages</button>
+            <button class="box-btn" onclick="filter('veg')"><i class="fas fa-drumstick-bite"></i> Veg</button>
+            <button class="box-btn" onclick="filter('nonveg')"><i class="fas fa-drumstick-bite"></i> Non-Veg</button>
+            <button class="box-btn"  onclick="filter('fastfood')"><i class="fas fa-hamburger"></i> Fast Foods</button>
+            <button class="box-btn"  onclick="filter('beverages')"><i class="fa-solid fa-cup-straw"></i>Beverages</button>
+<form action="" method="POST" style="display:none">
+    <input type="text" name="srch" id="fsrch">
+    <button id="filter" name="filter"></button>
+</form>
+<script>
+    function filter(cat){
+        documents.getElementById('fsrch').value = cat;
+        documents.getElementById('filter').Click();
 
-
+    }
+    </script>
             <!-- <form action="#">
 
                 <label for="fastfood"> </label>

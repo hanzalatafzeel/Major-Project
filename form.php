@@ -63,6 +63,7 @@ if(isset($_POST['login-s'])){
             $_SESSION['name'] = $row['name'];
             $_SESSION['contact'] = $row['contact'];
             $_SESSION['id'] = $row['id'];
+            $_SESSION['email'] = $email;
             $_SESSION['logtype'] = $who;
             if($who == 'student'){
                 header('location: ./');

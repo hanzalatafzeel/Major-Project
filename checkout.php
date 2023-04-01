@@ -9,13 +9,7 @@ if (!isset($_SESSION['id'])) {
 $uid = $_SESSION['id'];
 $sql = "SELECT `order_id`,`amount` from `order-list` where s_id = '$uid' && status = false";
 $result = $db->query($sql);
-if ($result->num_rows > 0) {
-    $orders = $result->fetch_assoc();
-    $oid = $orders['order_id'];
-    $_SESSION['oid'] = $oid;
-    $sql = "SELECT `item_id`,`qty`,`amount` from orders where order_id = '$oid'";
-    $result = $db->query($sql);
-}
+
 
 if(isset($_POST['del'])){
     $it_id = $_POST['del'];
@@ -98,13 +92,21 @@ $count = -1;
 
     <!-- checkout -->
     <div class="check">
+        <?php if ($result->num_rows > 0) {
+    while($orders = $result->fetch_assoc()){;
+    $oid = $orders['order_id'];
+    $_SESSION['oid'] = $oid;
+    $sql = "SELECT `item_id`,`qty`,`amount` from orders where order_id = '$oid'";
+    $get = $db->query($sql);
+
+?>
         <div class="check-container">
-            <?php if ($result->num_rows > 0) {
-                while ($list = $result->fetch_assoc()) {
+            <?php if ($get->num_rows > 0) {
+                while ($list = $get->fetch_assoc()) {
                     $id = $list['item_id'];
                     $sql = "SELECT `name`,`price` from item where id='$id'";
-                    $get = $db->query($sql);
-                    $item = $get->fetch_assoc();
+                    $fetch = $db->query($sql);
+                    $item = $fetch->fetch_assoc();
 
                     ?>
                     <div class="item">
@@ -149,20 +151,26 @@ $count = -1;
                     <p>Item Total &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&#8377;
                         <?php echo $orders['amount'] ?>
                     </p>
-                    <a href="payment.php" class="checkout-btn box-btn"><i class="fa fa-shopping-cart"
-                            aria-hidden="true"></i>Proceed to checkout</a>
+                    <form action="payment.php" method="POST">
+                    <button type="submit" class="checkout-btn box-btn" name="oid"  value="<?php echo $oid; ?>"><i class="fa fa-shopping-cart"
+                            aria-hidden="true"></i>Proceed to checkout</button>
+            </form>
                     <!-- <button href="payment.html" class="checkout-btn"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Proceed to checkout</button> -->
                 </div>
-            <?php } else {
-                ?>
-                <div class="emptymsg">
+            <?php } ?>
+                
+            
+
+        </div>
+            <?php }} else {?>
+            <div class="check-container">
+            <div class="emptymsg">
                     <h1>Oops! Your cart is empty !</h1>
                     <p>Looks like you haven't added anything to your cart yet</p>
                     <a href="index.php" class="box-btn">Go to Home</a>
                 </div>
+            </div>
             <?php } ?>
-
-        </div>
     </div>
 
 

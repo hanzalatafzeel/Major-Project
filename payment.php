@@ -6,9 +6,9 @@ session_start();
 if (!isset($_SESSION['id'])) {
     header("location: login.php");
 }
-if(isset($_SESSION['oid'])){
+if(isset($_POST['oid'])){
     $uid = $_SESSION['id'];
-$oid = $_SESSION['oid'];
+$oid = $_POST['oid'];
 $sql = "SELECT `amount` from `order-list` where order_id = '$oid'";
 $result = $db->query($sql);
 if ($result->num_rows > 0) {

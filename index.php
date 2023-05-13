@@ -6,9 +6,25 @@ session_start();
 if(isset($_POST['srch'])){
     $search = $_POST['srch']; 
     $srch = '%'.$_POST['srch'].'%';
-    $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` WHERE `name` LIKE '$srch'";
+    $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` WHERE `name` LIKE '$srch' OR `category` LIKE '$srch'";
     $result = $db->query($sql);
+    if($result->num_rows > 0){
     $text = 'Search Result for '. '"'.$search.'"';
+    }
+    // else{
+    //     $list = '!@#$%^&*()_-+=';
+    //     $srch = $search;
+    //     $srch = strtolower($srch);
+    //     $srch = rtrim($srch, "-");
+    //     echo $srch;
+    //     $srch = '%'.$srch.'%';
+    //     $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` WHERE `name` LIKE '$srch' OR `category` LIKE '$srch'";
+    //     $result = $db->query($sql);
+    //     if($result->num_rows > 0){
+    //     $text = 'Search Result for '. '"'.$search.'"';
+    // }
+       
+    // }
 
     
 }

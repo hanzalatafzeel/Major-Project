@@ -1,8 +1,8 @@
 <?php
 @include 'config.php';
+@include 'event.php';
 
 session_start();
-
 if (!isset($_SESSION['id'])) {
     header("location: login.php");
 }

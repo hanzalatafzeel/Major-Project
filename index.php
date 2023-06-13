@@ -7,9 +7,25 @@ session_start();
 if(isset($_POST['srch'])){
     $search = $_POST['srch']; 
     $srch = '%'.$_POST['srch'].'%';
-    $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` WHERE `name` LIKE '$srch'";
+    $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` WHERE `name` LIKE '$srch' OR `category` LIKE '$srch'";
     $result = $db->query($sql);
+    if($result->num_rows > 0){
     $text = 'Search Result for '. '"'.$search.'"';
+    }
+    // else{
+    //     $list = '!@#$%^&*()_-+=';
+    //     $srch = $search;
+    //     $srch = strtolower($srch);
+    //     $srch = rtrim($srch, "-");
+    //     echo $srch;
+    //     $srch = '%'.$srch.'%';
+    //     $sql = "SELECT `id`,`name`,`price`, `image`  FROM `item` WHERE `name` LIKE '$srch' OR `category` LIKE '$srch'";
+    //     $result = $db->query($sql);
+    //     if($result->num_rows > 0){
+    //     $text = 'Search Result for '. '"'.$search.'"';
+    // }
+       
+    // }
 
     
 }
@@ -50,10 +66,15 @@ $count = -1;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+<<<<<<< HEAD
     
     <?php echo $event ?>
         <!--Bootstrap-js-->
 
+=======
+    <!--Bootstrap-js-->
+    <?php echo $event ?>
+>>>>>>> 295e850336f2c7f885a3673051d6538a9a320585
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>

@@ -1,8 +1,8 @@
 <?php
 @include 'config.php';
+@include 'event.php';
 
 session_start();
-
 if (!isset($_SESSION['id'])) {
     header("location: login.php");
 }
@@ -93,7 +93,8 @@ $count = -1;
     <!-- checkout -->
     <div class="check">
         <?php if ($result->num_rows > 0) {
-    while($orders = $result->fetch_assoc()){;
+   
+        $orders = $result->fetch_assoc();
     $oid = $orders['order_id'];
     $_SESSION['oid'] = $oid;
     $sql = "SELECT `item_id`,`qty`,`amount` from orders where order_id = '$oid'";
@@ -162,7 +163,7 @@ $count = -1;
             
 
         </div>
-            <?php }} else {?>
+            <?php } else {?>
             <div class="check-container">
             <div class="emptymsg">
                     <h1>Oops! Your cart is empty !</h1>

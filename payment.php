@@ -245,9 +245,22 @@ $time = date("h:i");
             document.getElementById("pod").style.display="block";
             document.getElementById("paycard").style.display ="none"; 
             document.getElementById("payupi").style.display ="none";  
+<<<<<<< HEAD
            
         }
         
+=======
+            // document.getElementById("pap").style.display="none";
+
+        }
+        // function pod(){
+        //     // document.getElementById("pap").style.display="block";
+        //     document.getElementById("pod").style.display="none";
+        //     document.getElementById("paycard").style.display ="none"; 
+        //     document.getElementById("payupi").style.display ="none";  
+
+        // }
+>>>>>>> 295e850336f2c7f885a3673051d6538a9a320585
 
     </script>
 </body>

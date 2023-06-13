@@ -1,7 +1,7 @@
 <?php
-$dbHost = "localhost";
-$dbUsername = "root";
-$dbPassword = "";
+$dbHost = "sql204.infinityfree.com";
+$dbUsername = "if0_34401689";
+$dbPassword = "ULEkmLzHpuk1";
 $dbName = "canteen";
 
 $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);

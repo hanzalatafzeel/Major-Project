@@ -151,7 +151,7 @@ table {
 .content{
   padding: 2%;
   border-radius: 10px;
-  background-color: #fbefe4;
+  background:linear-gradient(to right, #FF416C, #ff6014);
   /* color: #fff; */
 }
 .order-ready{

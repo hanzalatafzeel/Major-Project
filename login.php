@@ -149,6 +149,55 @@ if(isset($_SESSION['regerr'])){
             </div>
         </div>
     </div>
+
+
+    <!-- flip  -->
+    <!-- <div class="flip-card-3D-wrapper">
+        <div id="flip-card">
+            <div class="flip-card-front">
+            <form action="form.php" method="POST"  enctype="multipart/form-data">
+                    <div class="image">
+                       <img src="userprofile.png" alt="">
+                    </div>
+                    <div class="formError"></div>
+                    <select name="type" id="type">
+                        <option value="null">I am a </option>
+                        <option value="student">Bonafide Student</option>
+                        <option value="alumni">Graduate Student(Alumni)</option>
+                        <option value="faculty">Faculty Member</option>
+                    </select>
+                    <input type="email" name="email" placeholder="enter your email">
+                    <input type="password" name="password" placeholder="enter your password">
+                    <input type="submit" name="submit" value="Login now" class="form-btn">
+                    <p>don't have an account? <a id="flip-card-btn-turn-to-back" href="#">Register</a></p>
+                </form>
+            </div>
+
+            signup flip 
+            <div class="flip-card-back">
+                <form action="http://localhost:8000/createAccount" method="POST" id="register">
+                    <div class="image">
+                        <img src="userprofile.png" alt="">
+                    </div>
+                    <div class="formError"></div>
+                    <select name="type" id="type">
+                        <option value="null">I am a </option>
+                        <option value="student">Bonafide Student</option>
+                        <option value="alumni">Graduate Student(Alumni)</option>
+                        <option value="faculty">Faculty Member</option>
+                    </select>
+                    <input type="text" id="name" name="name" placeholder="Name">
+                    <input type="text" id="userId" name="userId" placeholder="Student Id/ Faculty Id ">
+                    <input type="email" id="email" name="email" placeholder="Email">
+                    <input placeholder="Year of Joining" id="yoj" name="yoj" type="text" onfocus="(this.type='date')">
+                    <input type="password" name="password" id="password" placeholder="Enter your password">
+                    <input type="submit" name="submit" value="Register" class="form-btn">
+                    <p>Already have an account? <a id="flip-card-btn-turn-to-front" href="#">Login</a></p>
+
+                </form>
+            </div>
+        </div>
+    </div> -->
     <!-- Footer -->
     
     <?php @include 'templates/footer.php'?>

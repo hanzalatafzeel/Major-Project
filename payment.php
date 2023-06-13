@@ -1,6 +1,6 @@
 <?php
 @include 'config.php';
-
+@include 'event.php';
 session_start();
 
 if (!isset($_SESSION['id'])) {
@@ -57,6 +57,8 @@ $time = date("h:i");
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--Bootstrap-js-->
+    <?php echo $event ?>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
@@ -74,7 +76,8 @@ $time = date("h:i");
 
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand pageName" href="index.php">Canteen</a>
+    <a class="navbar-brand pageName" href="index.php"><span class="yellow">C</span>ampus<span
+                class="yellow">C</span>rave </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -210,13 +213,13 @@ $time = date("h:i");
                     <button class="checkout-btn box-btn" name="pay" id="pay" value="paid" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377; <?php echo $orders['amount']; ?></button>
                 </form>
             </div>
-            <div class="pay-method " id="pap">
+            <!-- <div class="pay-method " id="pap">
                 <h4>PAY NOW </h4>
                 <form action="gateway.php" method="post">
                     
                     <button class="checkout-btn" name="rpay" id="rpay" value="paid" >&nbsp;<i class="fa fa-money" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;PAY &#8377; <?php echo $orders['amount']; ?></button>
                 </form>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -230,30 +233,21 @@ $time = date("h:i");
             document.getElementById("payupi").style.display ="block";
             document.getElementById("paycard").style.display ="none";  
             document.getElementById("pod").style.display="none";
-            document.getElementById("pap").style.display="none";
-
+           
 
         }
         function cardshow(){
             document.getElementById("paycard").style.display ="block";    
             document.getElementById("payupi").style.display ="none";  
             document.getElementById("pod").style.display="none";
-            document.getElementById("pap").style.display="none";
-        }
+                   }
         function pod(){
             document.getElementById("pod").style.display="block";
             document.getElementById("paycard").style.display ="none"; 
             document.getElementById("payupi").style.display ="none";  
-            document.getElementById("pap").style.display="none";
-
+           
         }
-        function pod(){
-            document.getElementById("pap").style.display="block";
-            document.getElementById("pod").style.display="none";
-            document.getElementById("paycard").style.display ="none"; 
-            document.getElementById("payupi").style.display ="none";  
-
-        }
+        
 
     </script>
 </body>

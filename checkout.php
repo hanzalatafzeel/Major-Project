@@ -115,7 +115,7 @@ $count = -1;
                             <?php echo $item['name'] ?>
                         </div>
 
-                        <div class="item-box ">
+                        <div class="item-box incre">
                             <button class="cart-btn" onclick="dec('<?php echo $id ?>')"><i class="fa fa-minus"
                                     aria-hidden="true"></i></button>
                             <input type="number" value="<?php echo $list['qty'] ?>" id="<?php echo $id ?>">

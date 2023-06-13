@@ -1,5 +1,6 @@
 <?php
 @include 'config.php';
+@include 'event.php';
 
 session_start();
 
@@ -49,7 +50,10 @@ $count = -1;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!--Bootstrap-js-->
+    
+    <?php echo $event ?>
+        <!--Bootstrap-js-->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
@@ -153,20 +157,7 @@ $count = -1;
 
     }
     </script>
-            <!-- <form action="#">
 
-                <label for="fastfood"> </label>
-                <input type="checkbox" name="fastfood" id="fastfood"> <br>
-                <label for="fastfood">Fast Food</label>
-                <input type="checkbox" name="fastfood" id="fastfood"><br>
-                <label for="fastfood">Snacks</label>
-                <input type="checkbox" name="fastfood" id="fastfood"><br>
-                <label for="fastfood">Deserts</label>
-                <input type="checkbox" name="fastfood" id="fastfood"><br>
-                <label for="fastfood">Beverages</label>
-                <input type="checkbox" name="fastfood" id="fastfood">
-
-            </form> -->
         </div>
 
         <?php if ($result->num_rows > 0) { ?>
@@ -208,11 +199,6 @@ $count = -1;
             </div>
         <?php } ?>
     </div>
-
-
-    <!-- </div> -->
-
-    <!-- Footer -->
 
     
     <!-- <?php if (isset($_SESSION['logged'])) { ?>

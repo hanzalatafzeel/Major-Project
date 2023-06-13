@@ -15,7 +15,7 @@ $cid = $_POST['c_id'];
       $imgi = $_FILES["imgf"]["tmp_name"];
       $imgf = addslashes(file_get_contents($imgi));
     }else{
-
+ 
       $statusMsg = "Sorry only specific files are allowed";
       }
   }else{

@@ -130,5 +130,15 @@ hr{
     color: crimson;
 
 }
-
+@media (max-width:786px){
+    .check-container{
+        margin-top: 15%;
+    }
+    .incre{
+        width: 80%;
+    }
+    #deleteItem{
+        padding-left: 45px;
+    }
+}
 

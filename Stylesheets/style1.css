@@ -264,8 +264,8 @@ body{
 	}
 	.upper-login .overlay-container {
 		position: absolute;
-		top: 40%;
-		height: 100%;
+		top: 0%;
+		height: 50%;
 		overflow: hidden;
 		transition: transform 0.6s ease-in-out;
 		z-index: 100;
